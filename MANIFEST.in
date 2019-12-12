@@ -1,0 +1,3 @@
+include grafana-dashboard-full.json
+include grafana-dashboard-monitoring.json
+include LICENSE
