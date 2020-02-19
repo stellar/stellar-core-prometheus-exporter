@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="stellar-core-prometheus-exporter",
-    version="0.9.0",
+    version="0.9.1",
     author="Stellar Development Foundation",
     author_email="ops@stellar.org",
     description="Export stellar core metrics in prometheus format",

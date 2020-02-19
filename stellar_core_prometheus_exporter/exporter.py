@@ -87,6 +87,7 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
     def set_vars(self):
         self.info_url = args.stellar_core_address + '/info'
         self.metrics_url = args.stellar_core_address + '/metrics'
+        self.cursors_url = args.stellar_core_address + '/getcursor'
         self.info_keys = ['ledger', 'network', 'peers', 'protocol_version', 'quorum', 'startedOn', 'state']
         self.state_metrics = ['booting', 'joining scp', 'connected', 'catching up', 'synced', 'stopping']
         self.ledger_metrics = {'age': 'age', 'baseFee': 'base_fee', 'baseReserve': 'base_reserve',
@@ -112,6 +113,9 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
         self.set_vars()
+        ###########################################
+        # Export metrics from the /metrics endpoint
+        ###########################################
         try:
             response = requests.get(self.metrics_url)
         except requests.ConnectionError:
@@ -179,7 +183,9 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
                 c = Counter(metric_name, 'libmedida metric type: ' + metrics[k]['type'], self.label_names, registry=self.registry)
                 c.labels(*self.labels).inc(metrics[k]['count'])
 
+        #######################################
         # Export metrics from the info endpoint
+        #######################################
         try:
             response = requests.get(self.info_url)
         except requests.ConnectionError:
@@ -296,6 +302,33 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
         date = datetime.strptime(info['startedOn'], "%Y-%m-%dT%H:%M:%SZ")
         g.labels(*self.labels).set(int(date.strftime('%s')))
 
+        #######################################
+        # Export cursor metrics
+        #######################################
+        try:
+            response = requests.get(self.cursors_url)
+        except requests.ConnectionError:
+            self.error(504, 'Error retrieving data from {}'.format(self.cursors_url))
+            return
+        if not response.ok:
+            self.error(504, 'Error retrieving data from {}'.format(self.cursors_url))
+            return
+        try:
+            cursors = response.json()['cursors']
+        except ValueError:
+            self.error(500, 'Error parsing info JSON data')
+            return
+
+        g = Gauge('stellar_core_active_cursors',
+                  'Stellar core active cursors',
+                  self.label_names + ['cursor_name'], registry=self.registry)
+        for cursor in cursors:
+            l = self.labels + [cursor.get('id').strip()]
+            g.labels(*l).set(cursor['cursor'])
+
+        #######################################
+        # Render output
+        #######################################
         output = generate_latest(self.registry)
         if not output:
             self.error(500, 'Error - no metrics were genereated')
@@ -313,6 +346,7 @@ def main():
     t.start()
     while True:
         time.sleep(1)
+
 
 if __name__ == "__main__":
     main()
