@@ -323,6 +323,8 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
                   'Stellar core active cursors',
                   self.label_names + ['cursor_name'], registry=self.registry)
         for cursor in cursors:
+            if not cursor:
+                continue
             l = self.labels + [cursor.get('id').strip()]
             g.labels(*l).set(cursor['cursor'])
 
