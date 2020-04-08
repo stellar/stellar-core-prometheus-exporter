@@ -313,20 +313,24 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
         if not response.ok:
             self.error(504, 'Error retrieving data from {}'.format(self.cursors_url))
             return
-        try:
-            cursors = response.json()['cursors']
-        except ValueError:
-            self.error(500, 'Error parsing info JSON data')
-            return
 
-        g = Gauge('stellar_core_active_cursors',
-                  'Stellar core active cursors',
-                  self.label_names + ['cursor_name'], registry=self.registry)
-        for cursor in cursors:
-            if not cursor:
-                continue
-            l = self.labels + [cursor.get('id').strip()]
-            g.labels(*l).set(cursor['cursor'])
+        # Some server modes we want to scrape do not support 'getcursors' command at all.
+        # These just respond with the non-json informative unknown-commands output.
+        if "Supported HTTP commands" not in str(response.content):
+            try:
+                cursors = response.json()['cursors']
+            except ValueError:
+                self.error(500, 'Error parsing cursor JSON data')
+                return
+
+            g = Gauge('stellar_core_active_cursors',
+                      'Stellar core active cursors',
+                      self.label_names + ['cursor_name'], registry=self.registry)
+            for cursor in cursors:
+                if not cursor:
+                    continue
+                l = self.labels + [cursor.get('id').strip()]
+                g.labels(*l).set(cursor['cursor'])
 
         #######################################
         # Render output
