@@ -84,6 +84,32 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
         }
         return eval(time_units_to_seconds[duration_unit])
 
+    def buckets_to_metrics(self, metric_name, buckets):
+        # Converts raw bucket metric into sorted list of buckets
+        unit = buckets['boundary_unit']
+        description = 'libmedida metric type: ' + buckets['type']
+        c = Counter(metric_name + '_count', description, self.label_names, registry=self.registry)
+        g = Gauge(metric_name + '_bucket', description, self.label_names + ['le'], registry=self.registry)
+
+        measurements = []
+        for bucket in buckets['buckets']:
+            measurements.append({
+                'boundary': self.duration_to_seconds(bucket['boundary'], unit),
+                'count': bucket['count']
+                }
+            )
+        count = 0
+        for m in sorted(measurements, key=lambda i: i['boundary']):
+            # Buckets from core contain only values from their respective ranges.
+            # Prometheus expects "le" buckets to be cummulative so we need some extra math
+            count += m['count']
+            c.labels(*self.labels).inc(m['count'])
+            # Treat buckets larger than 30d as infinity
+            if float(m['boundary']) > 30 * 86400:
+                g.labels(*self.labels + ['+Inf']).inc(count)
+            else:
+                g.labels(*self.labels + [m['boundary']]).inc(count)
+
     def set_vars(self):
         self.info_url = args.stellar_core_address + '/info'
         self.metrics_url = args.stellar_core_address + '/metrics'
@@ -158,7 +184,7 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
                     self.duration_to_seconds(metrics[k]['75%'], metrics[k]['duration_unit']))
                 summary.labels(*self.labels + ['0.99']).set(
                     self.duration_to_seconds(metrics[k]['99%'], metrics[k]['duration_unit']))
-            if metrics[k]['type'] == 'histogram':
+            elif metrics[k]['type'] == 'histogram':
                 if 'count' not in metrics[k]:
                     # Stellar-core version too old, we don't have required data
                     continue
@@ -182,6 +208,9 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
                 # we have a meter, this is a Prometheus Counter
                 c = Counter(metric_name, 'libmedida metric type: ' + metrics[k]['type'], self.label_names, registry=self.registry)
                 c.labels(*self.labels).inc(metrics[k]['count'])
+            elif metrics[k]['type'] == 'buckets':
+                # We have a bucket, this is a Prometheus Histogram
+                self.buckets_to_metrics(metric_name, metrics[k])
 
         #######################################
         # Export metrics from the info endpoint
