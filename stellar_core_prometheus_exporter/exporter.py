@@ -89,13 +89,15 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
         unit = buckets['boundary_unit']
         description = 'libmedida metric type: ' + buckets['type']
         c = Counter(metric_name + '_count', description, self.label_names, registry=self.registry)
+        s = Counter(metric_name + '_sum', description, self.label_names, registry=self.registry)
         g = Gauge(metric_name + '_bucket', description, self.label_names + ['le'], registry=self.registry)
 
         measurements = []
         for bucket in buckets['buckets']:
             measurements.append({
                 'boundary': self.duration_to_seconds(bucket['boundary'], unit),
-                'count': bucket['count']
+                'count': bucket['count'],
+                'sum': bucket['sum']
                 }
             )
         count = 0
@@ -104,6 +106,7 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
             # Prometheus expects "le" buckets to be cummulative so we need some extra math
             count += m['count']
             c.labels(*self.labels).inc(m['count'])
+            s.labels(*self.labels).inc(self.duration_to_seconds(m['sum'], unit))
             # Treat buckets larger than 30d as infinity
             if float(m['boundary']) > 30 * 86400:
                 g.labels(*self.labels + ['+Inf']).inc(count)
