@@ -302,7 +302,7 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
                         l = self.labels + [critical_peers]
                         g.labels(*l).set(1)
                 else:
-                    l = self.labels + ['']  # critical_validators label set to empty string
+                    l = self.labels + ['null']
                     g.labels(*l).set(0)
 
         # Peers metrics
