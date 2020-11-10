@@ -50,9 +50,9 @@
   },
   "editable": true,
   "gnetId": null,
-  "graphTooltip": 0,
+  "graphTooltip": 1,
   "id": null,
-  "iteration": 1571050158330,
+  "iteration": 1605006158859,
   "links": [
     {
       "icon": "external link",
@@ -165,7 +165,7 @@
           "expr": "up{job=~\".*stellar.core.*\", environment=~\"$environment\",instance=~\"$instance\"}",
           "format": "time_series",
           "hide": false,
-          "instant": true,
+          "instant": false,
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -263,7 +263,7 @@
           "expr": "stellar_core_quorum_transitive_intersection{environment=~\"$environment\",instance=~\"$instance\"}",
           "format": "time_series",
           "hide": false,
-          "instant": true,
+          "instant": false,
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -350,9 +350,9 @@
       ],
       "targets": [
         {
-          "expr": "stellar_core_quorum_transitive_critical{environment=~\"$environment\",instance=~\"$instance\"} == 1",
+          "expr": "stellar_core_quorum_transitive_critical{environment=~\"$environment\",instance=~\"$instance\"}",
           "format": "time_series",
-          "instant": true,
+          "instant": false,
           "intervalFactor": 1,
           "legendFormat": "{{instance}} ({{critical_validators}})",
           "refId": "A"
@@ -484,13 +484,226 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "description": "Ledger Age Closed",
+      "fill": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 10
+      },
+      "id": 48,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {},
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "Average",
+          "linewidth": 3
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "avg(\n  rate(stellar_core_ledger_age_closed_sum{environment=~\"$environment\",instance=~\"$instance\"}[1m]) /\n  rate(stellar_core_ledger_age_closed_count{environment=~\"$environment\",instance=~\"$instance\"}[1m])\n)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Average",
+          "refId": "A"
+        },
+        {
+          "expr": "histogram_quantile(\n  0.99,\n  rate(stellar_core_ledger_age_closed_bucket{environment=~\"$environment\",instance=~\"$instance\"}[1m])\n)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{instance}} P99",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [
+        {
+          "colorMode": "critical",
+          "fill": true,
+          "line": false,
+          "op": "gt",
+          "value": 10,
+          "yaxis": "left"
+        },
+        {
+          "colorMode": "warning",
+          "fill": true,
+          "line": false,
+          "op": "gt",
+          "value": 8,
+          "yaxis": "left"
+        }
+      ],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Ledger Age Closed",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "s",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "description": "Ledger Age Closed",
+      "fill": 0,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 19
+      },
+      "id": 49,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {},
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "Average",
+          "linewidth": 3
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "avg(\n  rate(stellar_core_ledger_operation_count_sum{environment=~\"$environment\",instance=~\"$instance\"}[1m]) /\n  rate(stellar_core_ledger_operation_count_count{environment=~\"$environment\",instance=~\"$instance\"}[1m])\n)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Operations",
+          "refId": "A"
+        },
+        {
+          "expr": "avg(\n  rate(stellar_core_ledger_transaction_count_sum{environment=~\"$environment\",instance=~\"$instance\"}[1m]) /\n  rate(stellar_core_ledger_transaction_count_count{environment=~\"$environment\",instance=~\"$instance\"}[1m])\n)",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "Transactions",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Ledger Operation and Transaction counts",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "none",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
       "description": "Percentage of nodes with ledgers over 10s old.\nValues greater than 35% are considered critical",
       "fill": 1,
       "gridPos": {
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 10
+        "y": 19
       },
       "id": 10,
       "legend": {
@@ -587,7 +800,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 19
+        "y": 28
       },
       "id": 6,
       "links": [],
@@ -661,7 +874,7 @@
           "expr": "stellar_core_quorum_fail_at{environment=~\"$environment\",instance=~\"$instance\"}",
           "format": "time_series",
           "hide": false,
-          "instant": true,
+          "instant": false,
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -682,7 +895,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 19
+        "y": 28
       },
       "id": 8,
       "legend": {
@@ -779,7 +992,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 28
+        "y": 37
       },
       "id": 12,
       "links": [],
@@ -854,7 +1067,7 @@
           "expr": "stellar_core_synced{environment=~\"$environment\",instance=~\"$instance\"}",
           "format": "time_series",
           "hide": false,
-          "instant": true,
+          "instant": false,
           "intervalFactor": 1,
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -875,7 +1088,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 28
+        "y": 37
       },
       "id": 13,
       "legend": {
@@ -965,7 +1178,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 37
+        "y": 46
       },
       "id": 19,
       "panels": [
@@ -982,7 +1195,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 38
+            "y": 2
           },
           "id": 22,
           "links": [],
@@ -1057,7 +1270,7 @@
               "expr": "stellar_core_quorum_missing{environment=~\"$environment\",instance=~\"$instance\"} > 0",
               "format": "time_series",
               "hide": false,
-              "instant": true,
+              "instant": false,
               "intervalFactor": 1,
               "legendFormat": "{{instance}}",
               "refId": "A"
@@ -1080,7 +1293,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 38
+            "y": 2
           },
           "id": 23,
           "links": [],
@@ -1155,7 +1368,7 @@
               "expr": "stellar_core_quorum_delayed{environment=~\"$environment\",instance=~\"$instance\"} > 0",
               "format": "time_series",
               "hide": false,
-              "instant": true,
+              "instant": false,
               "intervalFactor": 1,
               "legendFormat": "{{instance}}",
               "refId": "A"
@@ -1176,7 +1389,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 47
+            "y": 11
           },
           "id": 25,
           "legend": {
@@ -1261,7 +1474,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 38
+        "y": 47
       },
       "id": 30,
       "panels": [
@@ -1325,7 +1538,7 @@
               "refId": "B"
             },
             {
-              "expr": "avg(\n  irate(stellar_core_bucket_batch_addtime_seconds_sum{environment=~\"$environment\", instance=~\"$instance\"}[1m])\n  / irate(stellar_core_bucket_batch_addtime_seconds_count{environment=~\"$environment\", instance=~\"$instance\"}[1m])\n)",
+              "expr": "avg(\n  rate(stellar_core_bucket_batch_addtime_seconds_sum{environment=~\"$environment\", instance=~\"$instance\"}[1m])\n  / rate(stellar_core_bucket_batch_addtime_seconds_count{environment=~\"$environment\", instance=~\"$instance\"}[1m])\n)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Average",
@@ -1609,7 +1822,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 39
+        "y": 48
       },
       "id": 32,
       "panels": [
@@ -2046,7 +2259,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 40
+        "y": 49
       },
       "id": 44,
       "panels": [
@@ -2096,7 +2309,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "avg(\n  irate(stellar_core_app_post_on_main_thread_delay_seconds_sum{environment=~\"$environment\", instance=~\"$instance\"}[1m])\n  / irate(stellar_core_app_post_on_main_thread_delay_seconds_count{environment=~\"$environment\", instance=~\"$instance\"}[1m])\n)",
+              "expr": "avg(\n  rate(stellar_core_app_post_on_main_thread_delay_seconds_sum{environment=~\"$environment\", instance=~\"$instance\"}[1m])\n  / rate(stellar_core_app_post_on_main_thread_delay_seconds_count{environment=~\"$environment\", instance=~\"$instance\"}[1m])\n)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Average",
@@ -2213,7 +2426,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "avg(\n  irate(stellar_core_app_post_on_background_thread_delay_seconds_sum{environment=~\"$environment\", instance=~\"$instance\"}[1m])\n  / irate(stellar_core_app_post_on_background_thread_delay_seconds_count{environment=~\"$environment\", instance=~\"$instance\"}[1m])\n)",
+              "expr": "avg(\n  rate(stellar_core_app_post_on_background_thread_delay_seconds_sum{environment=~\"$environment\", instance=~\"$instance\"}[1m])\n  / rate(stellar_core_app_post_on_background_thread_delay_seconds_count{environment=~\"$environment\", instance=~\"$instance\"}[1m])\n)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Average",
@@ -2294,7 +2507,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 41
+        "y": 50
       },
       "id": 46,
       "panels": [
@@ -2343,7 +2556,7 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "irate(stellar_core_crypto_verify_hit{environment=~\"$environment\",instance=~\"$instance\"}[1m])\n/ irate(stellar_core_crypto_verify_total{environment=~\"$environment\",instance=~\"$instance\"}[1m])\n* 100",
+              "expr": "rate(stellar_core_crypto_verify_hit{environment=~\"$environment\",instance=~\"$instance\"}[1m])\n/ rate(stellar_core_crypto_verify_total{environment=~\"$environment\",instance=~\"$instance\"}[1m])\n* 100",
               "format": "time_series",
               "hide": false,
               "interval": "",
@@ -2352,7 +2565,7 @@
               "refId": "A"
             },
             {
-              "expr": "avg(\n  irate(stellar_core_crypto_verify_hit{environment=~\"$environment\",instance=~\"$instance\"}[1m])\n  / irate(stellar_core_crypto_verify_total{environment=~\"$environment\",instance=~\"$instance\"}[1m])\n  * 100\n)",
+              "expr": "avg(\n  rate(stellar_core_crypto_verify_hit{environment=~\"$environment\",instance=~\"$instance\"}[1m])\n  / rate(stellar_core_crypto_verify_total{environment=~\"$environment\",instance=~\"$instance\"}[1m])\n  * 100\n)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Average",
@@ -2499,5 +2712,5 @@
   "timezone": "",
   "title": "Stellar Core Monitoring",
   "uid": "FkxF22IWk",
-  "version": 22
+  "version": 24
 }
