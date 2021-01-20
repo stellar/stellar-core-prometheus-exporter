@@ -55,11 +55,11 @@
     ]
   },
   "description": "Stellar core node health information and detailed metrics",
-  "editable": true,
+  "editable": false,
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1605006213986,
+  "iteration": 1611156600593,
   "links": [
     {
       "icon": "external link",
@@ -1832,6 +1832,211 @@
         "x": 0,
         "y": 12
       },
+      "id": 2518,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "description": "",
+          "fill": 0,
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 13
+          },
+          "id": 2520,
+          "legend": {
+            "alignAsTable": true,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {},
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Average",
+              "color": "rgb(0, 0, 0)"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "stellar_core_process_action_overloaded{environment=~\"$environment\",instance=~\"$instance\"}\n",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "{{instance}}",
+              "refId": "B"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Process Action Overloaded",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "description": "",
+          "fill": 0,
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 21
+          },
+          "id": 2519,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {},
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Average",
+              "color": "rgb(0, 0, 0)"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(\n  stellar_core_process_action_queue{environment=~\"$environment\",instance=~\"$instance\"}\n)",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "Average",
+              "refId": "A"
+            },
+            {
+              "expr": "  stellar_core_process_action_queue{environment=~\"$environment\",instance=~\"$instance\"}\n",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "{{instance}}",
+              "refId": "B"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Process Action Queue",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        }
+      ],
+      "title": "Process",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 13
+      },
       "id": 9,
       "panels": [
         {
@@ -3122,7 +3327,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 13
+        "y": 14
       },
       "id": 15,
       "panels": [
@@ -3951,7 +4156,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 14
+        "y": 15
       },
       "id": 221,
       "panels": [
@@ -3966,7 +4171,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 15
+            "y": 16
           },
           "id": 223,
           "legend": {
@@ -4067,7 +4272,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 15
+            "y": 16
           },
           "id": 224,
           "legend": {
@@ -4166,7 +4371,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 23
+            "y": 24
           },
           "id": 798,
           "legend": {
@@ -4265,7 +4470,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 23
+            "y": 24
           },
           "id": 799,
           "legend": {
@@ -4364,7 +4569,7 @@
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 31
+            "y": 32
           },
           "id": 241,
           "legend": {
@@ -4474,13 +4679,13 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "description": "Consensus Envelopes",
+          "description": "",
           "fill": 0,
           "gridPos": {
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 39
+            "y": 40
           },
           "id": 1985,
           "legend": {
@@ -4575,13 +4780,13 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "description": "Consensus Envelopes",
+          "description": "",
           "fill": 0,
           "gridPos": {
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 47
+            "y": 48
           },
           "id": 1988,
           "legend": {
@@ -4615,14 +4820,14 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "avg(\n  rate(stellar_core_scp_fetch_duration_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[1m]) /\n  rate(stellar_core_scp_fetch_duration_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[1m])\n)",
+              "expr": "avg(\n  rate(stellar_core_scp_timing_externalize_lag_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[1m]) /\n  rate(stellar_core_scp_timing_externalize_lag_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[1m])\n)",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Average",
               "refId": "A"
             },
             {
-              "expr": "stellar_core_scp_fetch_duration_seconds{quantile=\"0.99\",environment=~\"$environment\",instance=~\"$instance\"}",
+              "expr": "stellar_core_scp_timing_externalize_lag_seconds{quantile=\"0.99\",environment=~\"$environment\",instance=~\"$instance\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{instance}} P99",
@@ -4633,7 +4838,107 @@
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
-          "title": "Fetch Duration",
+          "title": "Timing Externalize Lag",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "description": "",
+          "fill": 0,
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 56
+          },
+          "id": 2521,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {},
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Average",
+              "color": "rgb(0, 0, 0)"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(\n  rate(stellar_core_scp_timing_externalize_delay_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[1m]) /\n  rate(stellar_core_scp_timing_externalize_delay_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[1m])\n)",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "Average",
+              "refId": "A"
+            },
+            {
+              "expr": "stellar_core_scp_timing_externalize_delay_seconds{quantile=\"0.99\",environment=~\"$environment\",instance=~\"$instance\"}",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "{{instance}} P99",
+              "refId": "B"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Timing Externalize Delay",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -4681,7 +4986,7 @@
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 55
+            "y": 64
           },
           "id": 393,
           "legend": {
@@ -4793,7 +5098,7 @@
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 63
+            "y": 72
           },
           "id": 392,
           "legend": {
@@ -4902,7 +5207,7 @@
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 71
+            "y": 80
           },
           "id": 394,
           "legend": {
@@ -5001,7 +5306,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 15
+        "y": 16
       },
       "id": 21,
       "panels": [
@@ -5109,7 +5414,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 16
+        "y": 17
       },
       "id": 396,
       "panels": [
@@ -5313,7 +5618,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 17
+        "y": 18
       },
       "id": 400,
       "panels": [
@@ -5328,7 +5633,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 18
+            "y": 9
           },
           "id": 402,
           "legend": {
@@ -5428,7 +5733,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 18
+            "y": 9
           },
           "id": 403,
           "legend": {
@@ -5528,7 +5833,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 27
+            "y": 18
           },
           "id": 404,
           "legend": {
@@ -5628,7 +5933,7 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 27
+            "y": 18
           },
           "id": 405,
           "legend": {
@@ -5727,7 +6032,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 18
+        "y": 19
       },
       "id": 592,
       "panels": [
@@ -5736,13 +6041,13 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "description": "Herder Pendign TXS",
+          "description": "Herder Pending TXS",
           "fill": 0,
           "gridPos": {
             "h": 9,
             "w": 24,
             "x": 0,
-            "y": 19
+            "y": 20
           },
           "id": 594,
           "legend": {
@@ -5803,7 +6108,7 @@
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
-          "title": "Herder Pendign TXS",
+          "title": "Herder Pending TXS",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -5839,6 +6144,206 @@
             "align": false,
             "alignLevel": null
           }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "description": "Herder Pendign TXS  banned",
+          "fill": 0,
+          "gridPos": {
+            "h": 9,
+            "w": 24,
+            "x": 0,
+            "y": 29
+          },
+          "id": 2468,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {},
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Average",
+              "color": "rgb(0, 0, 0)"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(rate(stellar_core_herder_pending_txs_banned{environment=~\"$environment\",instance=~\"$instance\"}[1m]))",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "Average",
+              "refId": "B"
+            },
+            {
+              "expr": "rate(stellar_core_herder_pending_txs_banned{environment=~\"$environment\",instance=~\"$instance\"}[1m])",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "{{instance}}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Herder Pending TXS banned",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "description": "Herder Pendign TXS  Delay",
+          "fill": 0,
+          "gridPos": {
+            "h": 9,
+            "w": 24,
+            "x": 0,
+            "y": 38
+          },
+          "id": 2469,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {},
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Average",
+              "color": "rgb(0, 0, 0)"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(\n  rate(stellar_core_herder_pending_txs_delay_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[1m]) /\n  rate(stellar_core_herder_pending_txs_delay_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[1m])\n)",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "Average",
+              "refId": "B"
+            },
+            {
+              "expr": "stellar_core_herder_pending_txs_delay_seconds{quantile=\"0.99\",environment=~\"$environment\",instance=~\"$instance\"}",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "{{instance}} P99",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Herder Pending TXS Delay",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
         }
       ],
       "title": "Herder",
@@ -5850,7 +6355,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 19
+        "y": 20
       },
       "id": 596,
       "panels": [
@@ -7204,7 +7709,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 20
+        "y": 21
       },
       "id": 937,
       "panels": [
@@ -7594,7 +8099,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 21
+        "y": 22
       },
       "id": 27,
       "panels": [
@@ -7609,7 +8114,7 @@
             "h": 9,
             "w": 24,
             "x": 0,
-            "y": 22
+            "y": 23
           },
           "id": 868,
           "legend": {
@@ -7708,7 +8213,7 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 31
+            "y": 32
           },
           "id": 29,
           "legend": {
@@ -7819,9 +8324,9 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 31
+            "y": 32
           },
-          "id": 2392,
+          "id": 2522,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -7844,7 +8349,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -7932,9 +8437,9 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 40
+            "y": 41
           },
-          "id": 2393,
+          "id": 2523,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -7957,7 +8462,120 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
+          "repeatPanelId": 29,
+          "scopedVars": {
+            "db_metric": {
+              "selected": false,
+              "text": "delete_claimablebalance",
+              "value": "delete_claimablebalance"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "alias": "/Average.*/",
+              "color": "rgb(0, 0, 0)"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
+              "format": "time_series",
+              "hide": false,
+              "intervalFactor": 1,
+              "legendFormat": "Average (5min)",
+              "refId": "A"
+            },
+            {
+              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
+              "format": "time_series",
+              "hide": false,
+              "intervalFactor": 1,
+              "legendFormat": "{{instance}} P99",
+              "refId": "B"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Duration: $db_metric",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "description": "Duration of $db_metric operations",
+          "fill": 0,
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 12,
+            "y": 41
+          },
+          "id": 2524,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 2,
+          "nullPointMode": "null",
+          "options": {},
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "h",
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -8044,123 +8662,10 @@
           "gridPos": {
             "h": 9,
             "w": 12,
-            "x": 12,
-            "y": 40
-          },
-          "id": 2394,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "delete_ledger_header",
-              "value": "delete_ledger_header"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
             "x": 0,
-            "y": 49
+            "y": 50
           },
-          "id": 2395,
+          "id": 2525,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -8183,120 +8688,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "delete_ledger_header_history",
-              "value": "delete_ledger_header_history"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 12,
-            "y": 49
-          },
-          "id": 2396,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -8383,10 +8775,10 @@
           "gridPos": {
             "h": 9,
             "w": 12,
-            "x": 0,
-            "y": 58
+            "x": 12,
+            "y": 50
           },
-          "id": 2397,
+          "id": 2526,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -8409,7 +8801,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -8496,10 +8888,10 @@
           "gridPos": {
             "h": 9,
             "w": 12,
-            "x": 12,
-            "y": 58
+            "x": 0,
+            "y": 59
           },
-          "id": 2398,
+          "id": 2527,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -8522,7 +8914,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -8609,123 +9001,10 @@
           "gridPos": {
             "h": 9,
             "w": 12,
-            "x": 0,
-            "y": 67
-          },
-          "id": 2399,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "delete_pubsub",
-              "value": "delete_pubsub"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
             "x": 12,
-            "y": 67
+            "y": 59
           },
-          "id": 2400,
+          "id": 2528,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -8748,7 +9027,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -8836,9 +9115,9 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 76
+            "y": 68
           },
-          "id": 2401,
+          "id": 2529,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -8861,7 +9140,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -8949,9 +9228,9 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 76
+            "y": 68
           },
-          "id": 2402,
+          "id": 2530,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -8974,7 +9253,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -9062,9 +9341,9 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 85
+            "y": 77
           },
-          "id": 2403,
+          "id": 2531,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -9087,7 +9366,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -9175,9 +9454,9 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 85
+            "y": 77
           },
-          "id": 2404,
+          "id": 2532,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -9200,120 +9479,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "delete_trust",
-              "value": "delete_trust"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 94
-          },
-          "id": 2405,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -9400,123 +9566,10 @@
           "gridPos": {
             "h": 9,
             "w": 12,
-            "x": 12,
-            "y": 94
-          },
-          "id": 2406,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "delete_txfeehistory",
-              "value": "delete_txfeehistory"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
             "x": 0,
-            "y": 103
+            "y": 86
           },
-          "id": 2407,
+          "id": 2533,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -9539,233 +9592,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "delete_txhistory",
-              "value": "delete_txhistory"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 12,
-            "y": 103
-          },
-          "id": 2408,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "insert_account",
-              "value": "insert_account"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 112
-          },
-          "id": 2409,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -9853,9 +9680,9 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 112
+            "y": 86
           },
-          "id": 2410,
+          "id": 2534,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -9878,120 +9705,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "insert_data",
-              "value": "insert_data"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 121
-          },
-          "id": 2411,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -10078,123 +9792,10 @@
           "gridPos": {
             "h": 9,
             "w": 12,
-            "x": 12,
-            "y": 121
-          },
-          "id": 2412,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "insert_ledger_header_history",
-              "value": "insert_ledger_header_history"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
             "x": 0,
-            "y": 130
+            "y": 95
           },
-          "id": 2413,
+          "id": 2535,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -10217,120 +9818,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "insert_offer",
-              "value": "insert_offer"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 12,
-            "y": 130
-          },
-          "id": 2414,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -10417,10 +9905,10 @@
           "gridPos": {
             "h": 9,
             "w": 12,
-            "x": 0,
-            "y": 139
+            "x": 12,
+            "y": 95
           },
-          "id": 2415,
+          "id": 2536,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -10443,7 +9931,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -10530,123 +10018,10 @@
           "gridPos": {
             "h": 9,
             "w": 12,
-            "x": 12,
-            "y": 139
-          },
-          "id": 2416,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "insert_pubsub",
-              "value": "insert_pubsub"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
             "x": 0,
-            "y": 148
+            "y": 104
           },
-          "id": 2417,
+          "id": 2537,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -10669,7 +10044,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -10757,9 +10132,9 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 148
+            "y": 104
           },
-          "id": 2418,
+          "id": 2538,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -10782,7 +10157,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -10870,9 +10245,9 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 157
+            "y": 113
           },
-          "id": 2419,
+          "id": 2539,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -10895,7 +10270,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -10983,9 +10358,9 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 157
+            "y": 113
           },
-          "id": 2420,
+          "id": 2540,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -11008,7 +10383,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -11096,9 +10471,9 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 166
+            "y": 122
           },
-          "id": 2421,
+          "id": 2541,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -11121,233 +10496,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "insert_trust",
-              "value": "insert_trust"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 12,
-            "y": 166
-          },
-          "id": 2422,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "insert_trustline",
-              "value": "insert_trustline"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 175
-          },
-          "id": 2423,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -11435,9 +10584,9 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 175
+            "y": 122
           },
-          "id": 2424,
+          "id": 2542,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -11460,7 +10609,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -11548,9 +10697,9 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 184
+            "y": 131
           },
-          "id": 2425,
+          "id": 2543,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -11573,7 +10722,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -11661,9 +10810,9 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 184
+            "y": 131
           },
-          "id": 2426,
+          "id": 2544,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -11686,7 +10835,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -11774,9 +10923,9 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 193
+            "y": 140
           },
-          "id": 2427,
+          "id": 2545,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -11799,7 +10948,120 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
+          "repeatPanelId": 29,
+          "scopedVars": {
+            "db_metric": {
+              "selected": false,
+              "text": "select_claimablebalance",
+              "value": "select_claimablebalance"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "alias": "/Average.*/",
+              "color": "rgb(0, 0, 0)"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
+              "format": "time_series",
+              "hide": false,
+              "intervalFactor": 1,
+              "legendFormat": "Average (5min)",
+              "refId": "A"
+            },
+            {
+              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
+              "format": "time_series",
+              "hide": false,
+              "intervalFactor": 1,
+              "legendFormat": "{{instance}} P99",
+              "refId": "B"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Duration: $db_metric",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "description": "Duration of $db_metric operations",
+          "fill": 0,
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 12,
+            "y": 140
+          },
+          "id": 2546,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 2,
+          "nullPointMode": "null",
+          "options": {},
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "h",
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -11886,10 +11148,10 @@
           "gridPos": {
             "h": 9,
             "w": 12,
-            "x": 12,
-            "y": 193
+            "x": 0,
+            "y": 149
           },
-          "id": 2428,
+          "id": 2547,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -11912,7 +11174,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -11999,10 +11261,10 @@
           "gridPos": {
             "h": 9,
             "w": 12,
-            "x": 0,
-            "y": 202
+            "x": 12,
+            "y": 149
           },
-          "id": 2429,
+          "id": 2548,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -12025,7 +11287,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -12112,10 +11374,10 @@
           "gridPos": {
             "h": 9,
             "w": 12,
-            "x": 12,
-            "y": 202
+            "x": 0,
+            "y": 158
           },
-          "id": 2430,
+          "id": 2549,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -12138,7 +11400,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -12225,10 +11487,10 @@
           "gridPos": {
             "h": 9,
             "w": 12,
-            "x": 0,
-            "y": 211
+            "x": 12,
+            "y": 158
           },
-          "id": 2431,
+          "id": 2550,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -12251,7 +11513,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -12338,123 +11600,10 @@
           "gridPos": {
             "h": 9,
             "w": 12,
-            "x": 12,
-            "y": 211
-          },
-          "id": 2432,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "select_publishqueue",
-              "value": "select_publishqueue"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
             "x": 0,
-            "y": 220
+            "y": 167
           },
-          "id": 2433,
+          "id": 2551,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -12477,7 +11626,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -12565,9 +11714,9 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 220
+            "y": 167
           },
-          "id": 2434,
+          "id": 2552,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -12590,7 +11739,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -12678,9 +11827,9 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 229
+            "y": 176
           },
-          "id": 2435,
+          "id": 2553,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -12703,7 +11852,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -12791,9 +11940,9 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 229
+            "y": 176
           },
-          "id": 2436,
+          "id": 2554,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -12816,7 +11965,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -12904,9 +12053,9 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 238
+            "y": 185
           },
-          "id": 2437,
+          "id": 2555,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -12929,7 +12078,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -13017,9 +12166,9 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 238
+            "y": 185
           },
-          "id": 2438,
+          "id": 2556,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -13042,7 +12191,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -13130,9 +12279,9 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 247
+            "y": 194
           },
-          "id": 2439,
+          "id": 2557,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -13155,233 +12304,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "select_trustline",
-              "value": "select_trustline"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 12,
-            "y": 247
-          },
-          "id": 2440,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "select_txfeehistory",
-              "value": "select_txfeehistory"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 256
-          },
-          "id": 2441,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -13469,9 +12392,9 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 256
+            "y": 194
           },
-          "id": 2442,
+          "id": 2558,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -13494,120 +12417,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "update_account",
-              "value": "update_account"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 265
-          },
-          "id": 2443,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -13694,123 +12504,10 @@
           "gridPos": {
             "h": 9,
             "w": 12,
-            "x": 12,
-            "y": 265
-          },
-          "id": 2444,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "update_data",
-              "value": "update_data"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
             "x": 0,
-            "y": 274
+            "y": 203
           },
-          "id": 2445,
+          "id": 2559,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -13833,346 +12530,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "update_ledger_header",
-              "value": "update_ledger_header"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 12,
-            "y": 274
-          },
-          "id": 2446,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "update_ledger_header_history",
-              "value": "update_ledger_header_history"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 283
-          },
-          "id": 2447,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "update_offer",
-              "value": "update_offer"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 12,
-            "y": 283
-          },
-          "id": 2448,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -14259,123 +12617,10 @@
           "gridPos": {
             "h": 9,
             "w": 12,
-            "x": 0,
-            "y": 292
-          },
-          "id": 2449,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "update_publishqueue",
-              "value": "update_publishqueue"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
             "x": 12,
-            "y": 292
+            "y": 203
           },
-          "id": 2450,
+          "id": 2560,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -14398,7 +12643,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -14486,9 +12731,9 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 301
+            "y": 212
           },
-          "id": 2451,
+          "id": 2561,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -14511,7 +12756,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -14599,9 +12844,9 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 301
+            "y": 212
           },
-          "id": 2452,
+          "id": 2562,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -14624,120 +12869,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "update_scphistory",
-              "value": "update_scphistory"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 310
-          },
-          "id": 2453,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -14824,10 +12956,10 @@
           "gridPos": {
             "h": 9,
             "w": 12,
-            "x": 12,
-            "y": 310
+            "x": 0,
+            "y": 221
           },
-          "id": 2454,
+          "id": 2563,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -14850,7 +12982,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -14937,123 +13069,10 @@
           "gridPos": {
             "h": 9,
             "w": 12,
-            "x": 0,
-            "y": 319
-          },
-          "id": 2455,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "update_trust",
-              "value": "update_trust"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
             "x": 12,
-            "y": 319
+            "y": 221
           },
-          "id": 2456,
+          "id": 2564,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -15076,346 +13095,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "update_trustline",
-              "value": "update_trustline"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 328
-          },
-          "id": 2457,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "update_txfeehistory",
-              "value": "update_txfeehistory"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 12,
-            "y": 328
-          },
-          "id": 2458,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
-          "repeatPanelId": 29,
-          "scopedVars": {
-            "db_metric": {
-              "selected": false,
-              "text": "update_txhistory",
-              "value": "update_txhistory"
-            }
-          },
-          "seriesOverrides": [
-            {
-              "alias": "/Average.*/",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "Average (5min)",
-              "refId": "A"
-            },
-            {
-              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
-              "format": "time_series",
-              "hide": false,
-              "intervalFactor": 1,
-              "legendFormat": "{{instance}} P99",
-              "refId": "B"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Duration: $db_metric",
-          "tooltip": {
-            "shared": true,
-            "sort": 0,
-            "value_type": "individual"
-          },
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "format": "s",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "description": "Duration of $db_metric operations",
-          "fill": 0,
-          "gridPos": {
-            "h": 9,
-            "w": 12,
-            "x": 0,
-            "y": 337
-          },
-          "id": 2459,
-          "legend": {
-            "alignAsTable": true,
-            "avg": true,
-            "current": true,
-            "max": true,
-            "min": true,
-            "show": true,
-            "total": false,
-            "values": true
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 2,
-          "nullPointMode": "null",
-          "options": {},
-          "percentage": false,
-          "pointradius": 5,
-          "points": false,
-          "renderer": "flot",
-          "repeat": null,
-          "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -15502,10 +13182,10 @@
           "gridPos": {
             "h": 9,
             "w": 12,
-            "x": 12,
-            "y": 337
+            "x": 0,
+            "y": 230
           },
-          "id": 2460,
+          "id": 2565,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -15528,7 +13208,120 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
+          "repeatPanelId": 29,
+          "scopedVars": {
+            "db_metric": {
+              "selected": false,
+              "text": "upsert_claimablebalance",
+              "value": "upsert_claimablebalance"
+            }
+          },
+          "seriesOverrides": [
+            {
+              "alias": "/Average.*/",
+              "color": "rgb(0, 0, 0)"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(\n  rate(stellar_core_database_${db_metric}_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[5m]) /\n  rate(stellar_core_database_${db_metric}_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[5m])\n)",
+              "format": "time_series",
+              "hide": false,
+              "intervalFactor": 1,
+              "legendFormat": "Average (5min)",
+              "refId": "A"
+            },
+            {
+              "expr": "stellar_core_database_${db_metric}_seconds{quantile=\"0.99\", environment=~\"$environment\",instance=~\"$instance\"}",
+              "format": "time_series",
+              "hide": false,
+              "intervalFactor": 1,
+              "legendFormat": "{{instance}} P99",
+              "refId": "B"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Duration: $db_metric",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "description": "Duration of $db_metric operations",
+          "fill": 0,
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 12,
+            "y": 230
+          },
+          "id": 2566,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 2,
+          "nullPointMode": "null",
+          "options": {},
+          "percentage": false,
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "repeat": null,
+          "repeatDirection": "h",
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -15616,9 +13409,9 @@
             "h": 9,
             "w": 12,
             "x": 0,
-            "y": 346
+            "y": 239
           },
-          "id": 2461,
+          "id": 2567,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -15641,7 +13434,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -15729,9 +13522,9 @@
             "h": 9,
             "w": 12,
             "x": 12,
-            "y": 346
+            "y": 239
           },
-          "id": 2462,
+          "id": 2568,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -15754,7 +13547,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611063551892,
           "repeatPanelId": 29,
           "scopedVars": {
             "db_metric": {
@@ -15842,7 +13635,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 22
+        "y": 23
       },
       "id": 1750,
       "panels": [
@@ -16537,7 +14330,7 @@
             "x": 12,
             "y": 50
           },
-          "id": 1923,
+          "id": 2493,
           "legend": {
             "avg": false,
             "current": false,
@@ -16567,14 +14360,14 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "avg(rate(stellar_core_overlay_error_read{environment=~\"$environment\",instance=~\"$instance\"}[1m]))",
+              "expr": "avg(rate(stellar_core_overlay_message_drop{environment=~\"$environment\",instance=~\"$instance\"}[1m]))",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Average",
               "refId": "A"
             },
             {
-              "expr": "rate(stellar_core_overlay_error_read{environment=~\"$environment\",instance=~\"$instance\"}[1m])",
+              "expr": "rate(stellar_core_overlay_message_drop{environment=~\"$environment\",instance=~\"$instance\"}[1m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{instance}}",
@@ -16585,7 +14378,7 @@
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
-          "title": "Read Error Rate",
+          "title": "Message Drop Rate",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -16719,7 +14512,7 @@
             "x": 12,
             "y": 59
           },
-          "id": 1921,
+          "id": 1923,
           "legend": {
             "avg": false,
             "current": false,
@@ -16738,24 +14531,36 @@
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [],
+          "seriesOverrides": [
+            {
+              "alias": "Average",
+              "color": "rgb(0, 0, 0)"
+            }
+          ],
           "spaceLength": 10,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "stellar_core_overlay_connection_authenticated{environment=~\"$environment\",instance=~\"$instance\"}",
+              "expr": "avg(rate(stellar_core_overlay_error_read{environment=~\"$environment\",instance=~\"$instance\"}[1m]))",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "Average",
+              "refId": "A"
+            },
+            {
+              "expr": "rate(stellar_core_overlay_error_read{environment=~\"$environment\",instance=~\"$instance\"}[1m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{instance}}",
-              "refId": "A"
+              "refId": "B"
             }
           ],
           "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
-          "title": "Authenticated Connections",
+          "title": "Read Error Rate",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -16771,11 +14576,11 @@
           },
           "yaxes": [
             {
-              "format": "short",
+              "format": "ops",
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": "0",
+              "min": null,
               "show": true
             },
             {
@@ -16901,7 +14706,7 @@
             "x": 12,
             "y": 68
           },
-          "id": 1925,
+          "id": 1921,
           "legend": {
             "avg": false,
             "current": false,
@@ -16920,36 +14725,24 @@
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
-          "seriesOverrides": [
-            {
-              "alias": "Average",
-              "color": "rgb(0, 0, 0)"
-            }
-          ],
+          "seriesOverrides": [],
           "spaceLength": 10,
           "stack": false,
           "steppedLine": false,
           "targets": [
             {
-              "expr": "avg(rate(stellar_core_overlay_fetch_duplicate_recv{environment=~\"$environment\",instance=~\"$instance\"}[1m]))",
-              "format": "time_series",
-              "intervalFactor": 1,
-              "legendFormat": "Average",
-              "refId": "A"
-            },
-            {
-              "expr": "rate(stellar_core_overlay_fetch_duplicate_recv{environment=~\"$environment\",instance=~\"$instance\"}[1m])",
+              "expr": "stellar_core_overlay_connection_authenticated{environment=~\"$environment\",instance=~\"$instance\"}",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{instance}}",
-              "refId": "B"
+              "refId": "A"
             }
           ],
           "thresholds": [],
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
-          "title": "Fetch Duplicate Recv",
+          "title": "Authenticated Connections",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -16965,11 +14758,11 @@
           },
           "yaxes": [
             {
-              "format": "ops",
+              "format": "short",
               "label": null,
               "logBase": 1,
               "max": null,
-              "min": null,
+              "min": "0",
               "show": true
             },
             {
@@ -17095,7 +14888,7 @@
             "x": 12,
             "y": 77
           },
-          "id": 1927,
+          "id": 1925,
           "legend": {
             "avg": false,
             "current": false,
@@ -17125,14 +14918,14 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "avg(rate(stellar_core_overlay_flood_broadcast{environment=~\"$environment\",instance=~\"$instance\"}[1m]))",
+              "expr": "avg(rate(stellar_core_overlay_fetch_duplicate_recv{environment=~\"$environment\",instance=~\"$instance\"}[1m]))",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Average",
               "refId": "A"
             },
             {
-              "expr": "rate(stellar_core_overlay_flood_broadcast{environment=~\"$environment\",instance=~\"$instance\"}[1m])",
+              "expr": "rate(stellar_core_overlay_fetch_duplicate_recv{environment=~\"$environment\",instance=~\"$instance\"}[1m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{instance}}",
@@ -17143,7 +14936,7 @@
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
-          "title": "Flood Broadcast Rate",
+          "title": "Fetch Duplicate Recv",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -17289,7 +15082,7 @@
             "x": 12,
             "y": 86
           },
-          "id": 1929,
+          "id": 1927,
           "legend": {
             "avg": false,
             "current": false,
@@ -17319,14 +15112,14 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "avg(rate(stellar_core_overlay_flood_unique_recv{environment=~\"$environment\",instance=~\"$instance\"}[1m]))",
+              "expr": "avg(rate(stellar_core_overlay_flood_broadcast{environment=~\"$environment\",instance=~\"$instance\"}[1m]))",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Average",
               "refId": "A"
             },
             {
-              "expr": "rate(stellar_core_overlay_flood_unique_recv{environment=~\"$environment\",instance=~\"$instance\"}[1m])",
+              "expr": "rate(stellar_core_overlay_flood_broadcast{environment=~\"$environment\",instance=~\"$instance\"}[1m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{instance}}",
@@ -17337,7 +15130,7 @@
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
-          "title": "Flood Unique Recv Rate",
+          "title": "Flood Broadcast Rate",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -17483,7 +15276,7 @@
             "x": 12,
             "y": 95
           },
-          "id": 1933,
+          "id": 1929,
           "legend": {
             "avg": false,
             "current": false,
@@ -17513,14 +15306,14 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "avg(rate(stellar_core_overlay_memory_flood_known{environment=~\"$environment\",instance=~\"$instance\"}[1m]))",
+              "expr": "avg(rate(stellar_core_overlay_flood_unique_recv{environment=~\"$environment\",instance=~\"$instance\"}[1m]))",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "Average",
               "refId": "A"
             },
             {
-              "expr": "rate(stellar_core_overlay_memory_flood_known{environment=~\"$environment\",instance=~\"$instance\"}[1m])",
+              "expr": "rate(stellar_core_overlay_flood_unique_recv{environment=~\"$environment\",instance=~\"$instance\"}[1m])",
               "format": "time_series",
               "intervalFactor": 1,
               "legendFormat": "{{instance}}",
@@ -17531,7 +15324,7 @@
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
-          "title": "Memory Flood Known",
+          "title": "Flood Unique Recv Rate",
           "tooltip": {
             "shared": true,
             "sort": 0,
@@ -17677,6 +15470,103 @@
             "x": 12,
             "y": 104
           },
+          "id": 1933,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {},
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Average",
+              "color": "rgb(0, 0, 0)"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(rate(stellar_core_overlay_memory_flood_known{environment=~\"$environment\",instance=~\"$instance\"}[1m]))",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "Average",
+              "refId": "A"
+            },
+            {
+              "expr": "rate(stellar_core_overlay_memory_flood_known{environment=~\"$environment\",instance=~\"$instance\"}[1m])",
+              "format": "time_series",
+              "intervalFactor": 1,
+              "legendFormat": "{{instance}}",
+              "refId": "B"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Memory Flood Known",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "ops",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "fill": 0,
+          "gridPos": {
+            "h": 9,
+            "w": 12,
+            "x": 12,
+            "y": 113
+          },
           "id": 1935,
           "legend": {
             "avg": false,
@@ -17772,7 +15662,7 @@
             "h": 9,
             "w": 24,
             "x": 0,
-            "y": 113
+            "y": 122
           },
           "id": 1958,
           "interval": "",
@@ -17805,6 +15695,7 @@
             {
               "expr": "rate(stellar_core_overlay_send_auth{environment=~\"$environment\",instance=~\"$instance\"}[1m]) >0",
               "format": "time_series",
+              "hide": false,
               "intervalFactor": 1,
               "legendFormat": "Auth {{instance}}",
               "refId": "A"
@@ -17812,6 +15703,7 @@
             {
               "expr": "rate(stellar_core_overlay_send_dont_have{environment=~\"$environment\",instance=~\"$instance\"}[1m]) >0",
               "format": "time_series",
+              "hide": false,
               "intervalFactor": 1,
               "legendFormat": "Don't have {{instance}}",
               "refId": "B"
@@ -17819,6 +15711,7 @@
             {
               "expr": "rate(stellar_core_overlay_send_error{environment=~\"$environment\",instance=~\"$instance\"}[1m]) >0",
               "format": "time_series",
+              "hide": false,
               "intervalFactor": 1,
               "legendFormat": "Error {{instance}}",
               "refId": "C"
@@ -17826,6 +15719,7 @@
             {
               "expr": "rate(stellar_core_overlay_send_get_peers{environment=~\"$environment\",instance=~\"$instance\"}[1m]) >0",
               "format": "time_series",
+              "hide": false,
               "intervalFactor": 1,
               "legendFormat": "Get Peers {{instance}}",
               "refId": "D"
@@ -17833,6 +15727,7 @@
             {
               "expr": "rate(stellar_core_overlay_send_get_scp_qset{environment=~\"$environment\",instance=~\"$instance\"}[1m]) >0",
               "format": "time_series",
+              "hide": false,
               "intervalFactor": 1,
               "legendFormat": "Get SCP Qset {{instance}}",
               "refId": "E"
@@ -17840,6 +15735,7 @@
             {
               "expr": "rate(stellar_core_overlay_send_get_scp_state{environment=~\"$environment\",instance=~\"$instance\"}[1m]) >0",
               "format": "time_series",
+              "hide": false,
               "intervalFactor": 1,
               "legendFormat": "Get SCP State {{instance}}",
               "refId": "F"
@@ -17847,6 +15743,7 @@
             {
               "expr": "rate(stellar_core_overlay_send_get_txset{environment=~\"$environment\",instance=~\"$instance\"}[1m]) >0",
               "format": "time_series",
+              "hide": false,
               "intervalFactor": 1,
               "legendFormat": "Get Txset {{instance}}",
               "refId": "G"
@@ -17854,6 +15751,7 @@
             {
               "expr": "rate(stellar_core_overlay_send_hello{environment=~\"$environment\",instance=~\"$instance\"}[1m]) >0",
               "format": "time_series",
+              "hide": false,
               "intervalFactor": 1,
               "legendFormat": "Hello {{instance}}",
               "refId": "H"
@@ -17861,6 +15759,7 @@
             {
               "expr": "rate(stellar_core_overlay_send_peers{environment=~\"$environment\",instance=~\"$instance\"}[1m]) >0",
               "format": "time_series",
+              "hide": false,
               "intervalFactor": 1,
               "legendFormat": "Peers {{instance}}",
               "refId": "I"
@@ -17868,6 +15767,7 @@
             {
               "expr": "rate(stellar_core_overlay_send_scp_message{environment=~\"$environment\",instance=~\"$instance\"}[1m]) >0",
               "format": "time_series",
+              "hide": false,
               "intervalFactor": 1,
               "legendFormat": "SCP Message {{instance}}",
               "refId": "J"
@@ -17875,6 +15775,7 @@
             {
               "expr": "rate(stellar_core_overlay_send_scp_qset{environment=~\"$environment\",instance=~\"$instance\"}[1m]) >0",
               "format": "time_series",
+              "hide": false,
               "intervalFactor": 1,
               "legendFormat": "SCP Qset {{instance}}",
               "refId": "K"
@@ -17882,6 +15783,7 @@
             {
               "expr": "rate(stellar_core_overlay_send_survey_request{environment=~\"$environment\",instance=~\"$instance\"}[1m]) >0",
               "format": "time_series",
+              "hide": false,
               "intervalFactor": 1,
               "legendFormat": "Survey Request {{instance}}",
               "refId": "L"
@@ -17896,6 +15798,7 @@
             {
               "expr": "rate(stellar_core_overlay_send_transaction{environment=~\"$environment\",instance=~\"$instance\"}[1m]) >0",
               "format": "time_series",
+              "hide": false,
               "interval": "",
               "intervalFactor": 1,
               "legendFormat": "Survey Transaction {{instance}}",
@@ -17953,7 +15856,7 @@
             "h": 9,
             "w": 24,
             "x": 0,
-            "y": 122
+            "y": 131
           },
           "id": 1930,
           "legend": {
@@ -18063,7 +15966,7 @@
             "h": 9,
             "w": 24,
             "x": 0,
-            "y": 131
+            "y": 140
           },
           "id": 1931,
           "legend": {
@@ -18173,7 +16076,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 23
+        "y": 24
       },
       "id": 98,
       "panels": [
@@ -18301,7 +16204,7 @@
             "x": 12,
             "y": 24
           },
-          "id": 2369,
+          "id": 2494,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -18324,7 +16227,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -18414,7 +16317,7 @@
             "x": 0,
             "y": 33
           },
-          "id": 2370,
+          "id": 2495,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -18437,7 +16340,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -18527,7 +16430,7 @@
             "x": 12,
             "y": 33
           },
-          "id": 2371,
+          "id": 2496,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -18550,7 +16453,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -18640,7 +16543,7 @@
             "x": 0,
             "y": 42
           },
-          "id": 2372,
+          "id": 2497,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -18663,7 +16566,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -18753,7 +16656,7 @@
             "x": 12,
             "y": 42
           },
-          "id": 2373,
+          "id": 2498,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -18776,7 +16679,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -18866,7 +16769,7 @@
             "x": 0,
             "y": 51
           },
-          "id": 2374,
+          "id": 2499,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -18889,7 +16792,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -18979,7 +16882,7 @@
             "x": 12,
             "y": 51
           },
-          "id": 2375,
+          "id": 2500,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -19002,7 +16905,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -19092,7 +16995,7 @@
             "x": 0,
             "y": 60
           },
-          "id": 2376,
+          "id": 2501,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -19115,7 +17018,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -19205,7 +17108,7 @@
             "x": 12,
             "y": 60
           },
-          "id": 2377,
+          "id": 2502,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -19228,7 +17131,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -19318,7 +17221,7 @@
             "x": 0,
             "y": 69
           },
-          "id": 2378,
+          "id": 2503,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -19341,7 +17244,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -19431,7 +17334,7 @@
             "x": 12,
             "y": 69
           },
-          "id": 2379,
+          "id": 2504,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -19454,7 +17357,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -19544,7 +17447,7 @@
             "x": 0,
             "y": 78
           },
-          "id": 2380,
+          "id": 2505,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -19567,7 +17470,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -19657,7 +17560,7 @@
             "x": 12,
             "y": 78
           },
-          "id": 2381,
+          "id": 2506,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -19680,7 +17583,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -19770,7 +17673,7 @@
             "x": 0,
             "y": 87
           },
-          "id": 2382,
+          "id": 2507,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -19793,7 +17696,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -19883,7 +17786,7 @@
             "x": 12,
             "y": 87
           },
-          "id": 2383,
+          "id": 2508,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -19906,7 +17809,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -19996,7 +17899,7 @@
             "x": 0,
             "y": 96
           },
-          "id": 2384,
+          "id": 2509,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -20019,7 +17922,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -20109,7 +18012,7 @@
             "x": 12,
             "y": 96
           },
-          "id": 2385,
+          "id": 2510,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -20132,7 +18035,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -20222,7 +18125,7 @@
             "x": 0,
             "y": 105
           },
-          "id": 2386,
+          "id": 2511,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -20245,7 +18148,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -20335,7 +18238,7 @@
             "x": 12,
             "y": 105
           },
-          "id": 2387,
+          "id": 2512,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -20358,7 +18261,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -20448,7 +18351,7 @@
             "x": 0,
             "y": 114
           },
-          "id": 2388,
+          "id": 2513,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -20471,7 +18374,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -20561,7 +18464,7 @@
             "x": 12,
             "y": 114
           },
-          "id": 2389,
+          "id": 2514,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -20584,7 +18487,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -20674,7 +18577,7 @@
             "x": 0,
             "y": 123
           },
-          "id": 2390,
+          "id": 2515,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -20697,7 +18600,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -20787,7 +18690,7 @@
             "x": 12,
             "y": 123
           },
-          "id": 2391,
+          "id": 2516,
           "legend": {
             "alignAsTable": true,
             "avg": true,
@@ -20810,7 +18713,7 @@
           "renderer": "flot",
           "repeat": null,
           "repeatDirection": "h",
-          "repeatIteration": 1588758335135,
+          "repeatIteration": 1611048393741,
           "repeatPanelId": 167,
           "scopedVars": {
             "overlay_metric": {
@@ -21066,5 +18969,5 @@
   "timezone": "",
   "title": "Stellar Core Full",
   "uid": "DCQsHZ7Wk",
-  "version": 75
+  "version": 76
 }
