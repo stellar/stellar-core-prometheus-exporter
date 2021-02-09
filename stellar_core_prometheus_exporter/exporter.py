@@ -342,12 +342,13 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
         except requests.ConnectionError:
             self.error(504, 'Error retrieving data from {}'.format(self.cursors_url))
             return
-        if not response.ok:
+
+        # Some server modes we want to scrape do not support 'getcursors' command at all.
+        # These just respond with a 404 and the non-json informative unknown-commands output.
+        if not response.ok and response.status_code != 404:
             self.error(504, 'Error retrieving data from {}'.format(self.cursors_url))
             return
 
-        # Some server modes we want to scrape do not support 'getcursors' command at all.
-        # These just respond with the non-json informative unknown-commands output.
         if "Supported HTTP commands" not in str(response.content):
             try:
                 cursors = response.json()['cursors']
