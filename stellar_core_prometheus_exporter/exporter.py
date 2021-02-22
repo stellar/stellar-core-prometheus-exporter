@@ -8,7 +8,7 @@ import time
 import threading
 from datetime import datetime
 from os import environ
-import lib
+from . import lib
 
 
 try:
