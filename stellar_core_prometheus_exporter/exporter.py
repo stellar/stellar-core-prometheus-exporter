@@ -8,11 +8,7 @@ import time
 import threading
 from datetime import datetime
 from os import environ
-
-# Prometheus client library
-from prometheus_client import CollectorRegistry
-from prometheus_client.core import Gauge, Counter
-from prometheus_client.exposition import CONTENT_TYPE_LATEST, generate_latest
+import lib
 
 
 try:
@@ -71,47 +67,41 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
         ]
         return labels
 
-    def duration_to_seconds(self, duration, duration_unit):
-        # given duration and duration_unit, returns duration in seconds
-        time_units_to_seconds = {
-            'd':  'duration * 86400.0',
-            'h':  'duration * 3600.0',
-            'm':  'duration * 60.0',
-            's':  'duration / 1.0',
-            'ms': 'duration / 1000.0',
-            'us': 'duration / 1000000.0',
-            'ns': 'duration / 1000000000.0',
-        }
-        return eval(time_units_to_seconds[duration_unit])
-
     def buckets_to_metrics(self, metric_name, buckets):
         # Converts raw bucket metric into sorted list of buckets
         unit = buckets['boundary_unit']
         description = 'libmedida metric type: ' + buckets['type']
-        c = Counter(metric_name + '_count', description, self.label_names, registry=self.registry)
-        s = Counter(metric_name + '_sum', description, self.label_names, registry=self.registry)
-        g = Gauge(metric_name + '_bucket', description, self.label_names + ['le'], registry=self.registry)
 
         measurements = []
         for bucket in buckets['buckets']:
             measurements.append({
-                'boundary': self.duration_to_seconds(bucket['boundary'], unit),
+                'boundary': lib.duration_to_seconds(bucket['boundary'], unit),
                 'count': bucket['count'],
                 'sum': bucket['sum']
                 }
             )
-        count = 0
+        count_value = 0
+        sum_value = 0
         for m in sorted(measurements, key=lambda i: i['boundary']):
             # Buckets from core contain only values from their respective ranges.
             # Prometheus expects "le" buckets to be cummulative so we need some extra math
-            count += m['count']
-            c.labels(*self.labels).inc(m['count'])
-            s.labels(*self.labels).inc(self.duration_to_seconds(m['sum'], unit))
+            count_value += m['count']
+            sum_value += lib.duration_to_seconds(m['sum'], unit)
+
             # Treat buckets larger than 30d as infinity
             if float(m['boundary']) > 30 * 86400:
-                g.labels(*self.labels + ['+Inf']).inc(count)
+                bucket = '+Inf'
             else:
-                g.labels(*self.labels + [m['boundary']]).inc(count)
+                bucket = m['boundary']
+
+            self.registry.Histogram(metric_name, description,
+                                    bucket=bucket,
+                                    value=count_value,
+                                    )
+        self.registry.Summary(metric_name, description,
+                              count_value=count_value,
+                              sum_value=sum_value,
+                              )
 
     def set_vars(self):
         self.info_url = args.stellar_core_address + '/info'
@@ -130,13 +120,14 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
         #   "v11.1.0"
         self.build_regex = re.compile('(stellar-core|v) ?(\d+)\.(\d+)\.(\d+).*$')
 
-        self.registry = CollectorRegistry()
         self.label_names = ["ver_major", "ver_minor", "ver_patch", "build", "network"]
         self.labels = self.get_labels()
+        self.registry = lib.Registry(default_labels=tuple(zip(self.label_names, self.labels)))
+        self.content_type = str('text/plain; version=0.0.4; charset=utf-8')
 
     def error(self, code, msg):
         self.send_response(code)
-        self.send_header('Content-Type', CONTENT_TYPE_LATEST)
+        self.send_header('Content-Type', self.content_type)
         self.end_headers()
         self.wfile.write('{}\n'.format(msg).encode('utf-8'))
 
@@ -173,44 +164,48 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
                 else:
                     # compute sum value
                     total_duration = (metrics[k]['mean'] * metrics[k]['count'])
-                c = Counter(metric_name + '_count', 'libmedida metric type: ' + metrics[k]['type'],
-                            self.label_names, registry=self.registry)
-                c.labels(*self.labels).inc(metrics[k]['count'])
-                s = Counter(metric_name + '_sum', 'libmedida metric type: ' + metrics[k]['type'],
-                            self.label_names, registry=self.registry)
-                s.labels(*self.labels).inc(self.duration_to_seconds(total_duration, metrics[k]['duration_unit']))
 
+                self.registry.Summary(metric_name, 'libmedida metric type: ' + metrics[k]['type'],
+                                      count_value=metrics[k]['count'],
+                                      sum_value=lib.duration_to_seconds(total_duration, metrics[k]['duration_unit']),
+                                      )
                 # add stellar-core calculated quantiles to our summary
-                summary = Gauge(metric_name, 'libmedida metric type: ' + metrics[k]['type'],
-                                self.label_names + ['quantile'], registry=self.registry)
-                summary.labels(*self.labels + ['0.75']).set(
-                    self.duration_to_seconds(metrics[k]['75%'], metrics[k]['duration_unit']))
-                summary.labels(*self.labels + ['0.99']).set(
-                    self.duration_to_seconds(metrics[k]['99%'], metrics[k]['duration_unit']))
+                self.registry.Gauge(metric_name, 'libmedida metric type: ' + metrics[k]['type'],
+                                    labels=tuple(zip(self.label_names+['quantile'], self.labels+[0.75])),
+                                    value=lib.duration_to_seconds(metrics[k]['75%'], metrics[k]['duration_unit']),
+                                    )
+                self.registry.Gauge(metric_name, 'libmedida metric type: ' + metrics[k]['type'],
+                                    labels=tuple(zip(self.label_names+['quantile'], self.labels+[0.99])),
+                                    value=lib.duration_to_seconds(metrics[k]['99%'], metrics[k]['duration_unit']),
+                                    )
             elif metrics[k]['type'] == 'histogram':
                 if 'count' not in metrics[k]:
                     # Stellar-core version too old, we don't have required data
                     continue
-                c = Counter(metric_name + '_count', 'libmedida metric type: ' + metrics[k]['type'],
-                            self.label_names, registry=self.registry)
-                c.labels(*self.labels).inc(metrics[k]['count'])
-                s = Counter(metric_name + '_sum', 'libmedida metric type: ' + metrics[k]['type'],
-                            self.label_names, registry=self.registry)
-                s.labels(*self.labels).inc(metrics[k]['sum'])
 
+                self.registry.Summary(metric_name, 'libmedida metric type: ' + metrics[k]['type'],
+                                      count_value=metrics[k]['count'],
+                                      sum_value=metrics[k]['sum'],
+                                      )
                 # add stellar-core calculated quantiles to our summary
-                summary = Gauge(metric_name, 'libmedida metric type: ' + metrics[k]['type'],
-                                self.label_names + ['quantile'], registry=self.registry)
-                summary.labels(*self.labels + ['0.75']).set(metrics[k]['75%'])
-                summary.labels(*self.labels + ['0.99']).set(metrics[k]['99%'])
+                self.registry.Gauge(metric_name, 'libmedida metric type: ' + metrics[k]['type'],
+                                    labels=tuple(zip(self.label_names+['quantile'], self.labels+[0.75])),
+                                    value=metrics[k]['75%'],
+                                    )
+                self.registry.Gauge(metric_name, 'libmedida metric type: ' + metrics[k]['type'],
+                                    labels=tuple(zip(self.label_names+['quantile'], self.labels+[0.99])),
+                                    value=metrics[k]['99%'],
+                                    )
             elif metrics[k]['type'] == 'counter':
                 # we have a counter, this is a Prometheus Gauge
-                g = Gauge(metric_name, 'libmedida metric type: ' + metrics[k]['type'], self.label_names, registry=self.registry)
-                g.labels(*self.labels).set(metrics[k]['count'])
+                self.registry.Gauge(metric_name, 'libmedida metric type: ' + metrics[k]['type'],
+                                    value=metrics[k]['count']
+                                    )
             elif metrics[k]['type'] == 'meter':
                 # we have a meter, this is a Prometheus Counter
-                c = Counter(metric_name, 'libmedida metric type: ' + metrics[k]['type'], self.label_names, registry=self.registry)
-                c.labels(*self.labels).inc(metrics[k]['count'])
+                self.registry.Counter(metric_name, 'libmedida metric type: ' + metrics[k]['type'],
+                                      value=metrics[k]['count']
+                                      )
             elif metrics[k]['type'] == 'buckets':
                 # We have a bucket, this is a Prometheus Histogram
                 self.buckets_to_metrics(metric_name, metrics[k])
@@ -237,11 +232,10 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
 
         # Ledger metrics
         for core_name, prom_name in self.ledger_metrics.items():
-            g = Gauge('stellar_core_ledger_{}'.format(prom_name),
-                      'Stellar core ledger metric name: {}'.format(core_name),
-                      self.label_names, registry=self.registry)
-            g.labels(*self.labels).set(info['ledger'][core_name])
-
+            self.registry.Gauge('stellar_core_ledger_{}'.format(prom_name),
+                                'Stellar core ledger metric name: {}'.format(core_name),
+                                value=info['ledger'][core_name],
+                                )
         # Version 11.2.0 and later report quorum metrics in the following format:
         # "quorum" : {
         #    "qset" : {
@@ -260,80 +254,82 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
             return
 
         for metric in self.quorum_metrics:
-            g = Gauge('stellar_core_quorum_{}'.format(metric),
-                      'Stellar core quorum metric: {}'.format(metric),
-                      self.label_names, registry=self.registry)
-            g.labels(*self.labels).set(tmp[metric])
-
+            self.registry.Gauge('stellar_core_quorum_{}'.format(metric),
+                                'Stellar core quorum metric: {}'.format(metric),
+                                tmp[metric]
+                                )
         for metric in self.quorum_phase_metrics:
-            g = Gauge('stellar_core_quorum_phase_{}'.format(metric),
-                      'Stellar core quorum phase {}'.format(metric),
-                      self.label_names, registry=self.registry)
             if tmp['phase'].lower() == metric:
-                g.labels(*self.labels).set(1)
+                value = 1
             else:
-                g.labels(*self.labels).set(0)
-
+                value = 0
+            self.registry.Gauge('stellar_core_quorum_phase_{}'.format(metric),
+                                'Stellar core quorum phase {}'.format(metric),
+                                value=value,
+                                )
         # Versions >=11.2.0 expose more info about quorum
         if 'transitive' in info['quorum']:
-            g = Gauge('stellar_core_quorum_transitive_intersection',
-                      'Stellar core quorum transitive intersection',
-                      self.label_names, registry=self.registry)
             if info['quorum']['transitive']['intersection']:
-                g.labels(*self.labels).set(1)
+                value = 1
             else:
-                g.labels(*self.labels).set(0)
-            g = Gauge('stellar_core_quorum_transitive_last_check_ledger',
-                      'Stellar core quorum transitive last_check_ledger',
-                      self.label_names, registry=self.registry)
-            g.labels(*self.labels).set(info['quorum']['transitive']['last_check_ledger'])
-            g = Gauge('stellar_core_quorum_transitive_node_count',
-                      'Stellar core quorum transitive node_count',
-                      self.label_names, registry=self.registry)
-            g.labels(*self.labels).set(info['quorum']['transitive']['node_count'])
+                value = 0
+            self.registry.Gauge('stellar_core_quorum_transitive_intersection',
+                                'Stellar core quorum transitive intersection',
+                                value=value,
+                                )
+            self.registry.Gauge('stellar_core_quorum_transitive_last_check_ledger',
+                                'Stellar core quorum transitive last_check_ledger',
+                                value=info['quorum']['transitive']['last_check_ledger'],
+                                )
+            self.registry.Gauge('stellar_core_quorum_transitive_node_count',
+                                'Stellar core quorum transitive node_count',
+                                value=info['quorum']['transitive']['node_count'],
+                                )
             # Versions >=11.3.0 expose "critical" key
             if 'critical' in info['quorum']['transitive']:
-                g = Gauge('stellar_core_quorum_transitive_critical',
-                          'Stellar core quorum transitive critical',
-                          self.label_names + ['critical_validators'], registry=self.registry)
                 if info['quorum']['transitive']['critical']:
                     for peer_list in info['quorum']['transitive']['critical']:
                         critical_peers = ','.join(sorted(peer_list))  # label value is comma separated listof peers
-                        l = self.labels + [critical_peers]
-                        g.labels(*l).set(1)
+                        self.registry.Gauge('stellar_core_quorum_transitive_critical',
+                                            'Stellar core quorum transitive critical',
+                                            labels=tuple(zip(self.label_names+['critical_validators'],
+                                                             self.labels+[critical_peers])),
+                                            value=1,
+                                            )
                 else:
-                    l = self.labels + ['null']
-                    g.labels(*l).set(0)
-
+                    self.registry.Gauge('stellar_core_quorum_transitive_critical',
+                                        'Stellar core quorum transitive critical',
+                                        labels=tuple(zip(self.label_names+['critical_validators'], self.labels+['null'])),
+                                        value=0,
+                                        )
         # Peers metrics
-        g = Gauge('stellar_core_peers_authenticated_count',
-                  'Stellar core authenticated_count count',
-                  self.label_names, registry=self.registry)
-        g.labels(*self.labels).set(info['peers']['authenticated_count'])
-        g = Gauge('stellar_core_peers_pending_count',
-                  'Stellar core pending_count count',
-                  self.label_names, registry=self.registry)
-        g.labels(*self.labels).set(info['peers']['pending_count'])
+        self.registry.Gauge('stellar_core_peers_authenticated_count',
+                            'Stellar core authenticated_count count',
+                            value=info['peers']['authenticated_count'],
+                            )
 
-        g = Gauge('stellar_core_protocol_version',
-                  'Stellar core protocol_version',
-                  self.label_names, registry=self.registry)
-        g.labels(*self.labels).set(info['protocol_version'])
-
+        self.registry.Gauge('stellar_core_peers_pending_count',
+                            'Stellar core pending_count count',
+                            value=info['peers']['pending_count'],
+                            )
+        self.registry.Gauge('stellar_core_protocol_version',
+                            'Stellar core protocol_version',
+                            value=info['protocol_version'],
+                            )
         for metric in self.state_metrics:
             name = re.sub('\s', '_', metric)
-            g = Gauge('stellar_core_{}'.format(name),
-                      'Stellar core state {}'.format(metric),
-                      self.label_names, registry=self.registry)
             if info['state'].lower().startswith(metric):  # Use startswith to work around "!"
-                g.labels(*self.labels).set(1)
+                value = 1
             else:
-                g.labels(*self.labels).set(0)
-
-        g = Gauge('stellar_core_started_on', 'Stellar core start time in epoch', self.label_names, registry=self.registry)
+                value = 0
+            self.registry.Gauge('stellar_core_{}'.format(name),
+                                'Stellar core state {}'.format(metric),
+                                value=value,
+                                )
         date = datetime.strptime(info['startedOn'], "%Y-%m-%dT%H:%M:%SZ")
-        g.labels(*self.labels).set(int(date.strftime('%s')))
-
+        self.registry.Gauge('stellar_core_started_on', 'Stellar core start time in epoch',
+                            value=int(date.strftime('%s')),
+                            )
         #######################################
         # Export cursor metrics
         #######################################
@@ -356,24 +352,25 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
                 self.error(500, 'Error parsing cursor JSON data')
                 return
 
-            g = Gauge('stellar_core_active_cursors',
-                      'Stellar core active cursors',
-                      self.label_names + ['cursor_name'], registry=self.registry)
             for cursor in cursors:
                 if not cursor:
                     continue
-                l = self.labels + [cursor.get('id').strip()]
-                g.labels(*l).set(cursor['cursor'])
+                cursor_name = cursor.get('id').strip()
+                self.registry.Gauge('stellar_core_active_cursors',
+                                    'Stellar core active cursors',
+                                    labels=tuple(zip(self.label_names+['cursor_name'], self.labels+[cursor_name])),
+                                    value=cursor['cursor'],
+                                    )
 
         #######################################
         # Render output
         #######################################
-        output = generate_latest(self.registry)
+        output = self.registry.render()
         if not output:
             self.error(500, 'Error - no metrics were genereated')
             return
         self.send_response(200)
-        self.send_header('Content-Type', CONTENT_TYPE_LATEST)
+        self.send_header('Content-Type', self.content_type)
         self.end_headers()
         self.wfile.write(output)
 
