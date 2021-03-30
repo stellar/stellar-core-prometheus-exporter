@@ -14,7 +14,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "6.2.5"
+      "version": "7.4.3"
     },
     {
       "type": "panel",
@@ -36,8 +36,8 @@
     },
     {
       "type": "panel",
-      "id": "table",
-      "name": "Table",
+      "id": "table-old",
+      "name": "Table (old)",
       "version": ""
     }
   ],
@@ -59,7 +59,7 @@
   "gnetId": null,
   "graphTooltip": 1,
   "id": null,
-  "iteration": 1611156600593,
+  "iteration": 1617091009521,
   "links": [
     {
       "icon": "external link",
@@ -74,6 +74,7 @@
   "panels": [
     {
       "collapsed": false,
+      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -94,7 +95,14 @@
         "rgba(237, 129, 40, 0.89)",
         "#299c46"
       ],
+      "datasource": "${DS_PROMETHEUS}",
       "description": "Number of stellar-core nodes that prometheus knows about.\n\nThis panel looks at targets defined in a prometheus job with name matching \".*stellar.core.*\" regex.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -126,7 +134,6 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
-      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -176,7 +183,14 @@
         "rgba(237, 129, 40, 0.89)",
         "#299c46"
       ],
+      "datasource": "${DS_PROMETHEUS}",
       "description": "Percentage of stellar-core nodes that are up\n\nThis panel looks at targets defined in a prometheus job with name matching \".*stellar.core.*\" regex.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "percent",
       "gauge": {
         "maxValue": 100,
@@ -208,7 +222,6 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
-      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -258,8 +271,15 @@
         "rgba(237, 129, 40, 0.89)",
         "#299c46"
       ],
+      "datasource": "${DS_PROMETHEUS}",
       "decimals": null,
       "description": "The number of failed nodes that would cause this instance to halt.\n\nThe query assumes all machines are members of the same quorum. If they are not they have to be split using the environment label.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -291,7 +311,6 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
-      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -342,7 +361,14 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
+      "datasource": "${DS_PROMETHEUS}",
       "description": "Quorum Missing Peers",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -374,7 +400,6 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
-      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -424,7 +449,14 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
+      "datasource": "${DS_PROMETHEUS}",
       "description": "Number of nodes without quorum intersection",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -456,7 +488,6 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
-      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -500,7 +531,14 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
+      "datasource": "${DS_PROMETHEUS}",
       "description": "Quorum Delayed Peers",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -532,7 +570,6 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
-      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -582,8 +619,15 @@
         "rgba(237, 129, 40, 0.89)",
         "#299c46"
       ],
+      "datasource": "${DS_PROMETHEUS}",
       "decimals": 2,
       "description": "Time since youngest node was started",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "s",
       "gauge": {
         "maxValue": 100,
@@ -615,7 +659,6 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
-      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -666,8 +709,15 @@
         "rgba(237, 129, 40, 0.89)",
         "#299c46"
       ],
+      "datasource": "${DS_PROMETHEUS}",
       "decimals": 2,
       "description": "Time since oldest node was started",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "s",
       "gauge": {
         "maxValue": 100,
@@ -699,7 +749,6 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
-      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -750,7 +799,14 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
+      "datasource": "${DS_PROMETHEUS}",
       "description": "Age of the oldest ledger among monitored nodes.\nIf this value is high it means some nodes are may be behind.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "s",
       "gauge": {
         "maxValue": 100,
@@ -782,7 +838,6 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
-      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -832,7 +887,14 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
+      "datasource": "${DS_PROMETHEUS}",
       "description": "Ledger version",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -864,7 +926,6 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
-      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -914,7 +975,14 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
+      "datasource": "${DS_PROMETHEUS}",
       "description": "Some of the nodes selected support protocol version higher than protocol of the ledger.\n\nThis prometheus query may be used to show nodes with possible upgrade:\nstellar_core_protocol_version > stellar_core_ledger_version\n\nNote that if you selected nodes from more than one quorum this panel might show incorrect data.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -946,7 +1014,6 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
-      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -996,8 +1063,15 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
+      "datasource": "${DS_PROMETHEUS}",
       "decimals": null,
       "description": "Out of Sync Nodes\n\nExpected value is 0",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1029,7 +1103,6 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
-      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -1080,7 +1153,14 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
+      "datasource": "${DS_PROMETHEUS}",
       "description": "Number of quorum changes in the last hour on host with the highest number of changes",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1112,7 +1192,6 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
-      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -1157,8 +1236,15 @@
         "rgba(237, 129, 40, 0.89)",
         "#d44a3a"
       ],
+      "datasource": "${DS_PROMETHEUS}",
       "decimals": null,
       "description": "Number of nodes with quorum transitive critical\n\nExpected value is 0",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "none",
       "gauge": {
         "maxValue": 100,
@@ -1190,7 +1276,6 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
-      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -1241,8 +1326,15 @@
         "rgba(237, 129, 40, 0.89)",
         "#299c46"
       ],
+      "datasource": "${DS_PROMETHEUS}",
       "decimals": 1,
       "description": "Percentage of ledgers closed within 7s in selected timerange.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "percent",
       "gauge": {
         "maxValue": 100,
@@ -1274,7 +1366,6 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
-      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -1325,8 +1416,15 @@
         "rgba(237, 129, 40, 0.89)",
         "#299c46"
       ],
+      "datasource": "${DS_PROMETHEUS}",
       "decimals": 1,
       "description": "Percentage of ledgers closed within 7s in the last 7 days",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "percent",
       "gauge": {
         "maxValue": 100,
@@ -1358,7 +1456,6 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
-      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -1409,8 +1506,15 @@
         "rgba(237, 129, 40, 0.89)",
         "#299c46"
       ],
+      "datasource": "${DS_PROMETHEUS}",
       "decimals": 1,
       "description": "Percentage of ledgers closed within 7s in the last 30 days",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "format": "percent",
       "gauge": {
         "maxValue": 100,
@@ -1442,7 +1546,6 @@
       "maxDataPoints": 100,
       "nullPointMode": "connected",
       "nullText": null,
-      "options": {},
       "postfix": "",
       "postfixFontSize": "50%",
       "prefix": "",
@@ -1486,6 +1589,7 @@
     },
     {
       "collapsed": true,
+      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1499,14 +1603,23 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
           "description": "Stellar Core State",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 0,
+          "fillGradient": 0,
           "gridPos": {
             "h": 7,
             "w": 24,
             "x": 0,
-            "y": 11
+            "y": 2
           },
+          "hiddenSeries": false,
           "id": 1551,
           "legend": {
             "alignAsTable": true,
@@ -1525,8 +1638,11 @@
           "linewidth": 1,
           "links": [],
           "nullPointMode": "null",
-          "options": {},
+          "options": {
+            "alertThreshold": true
+          },
           "percentage": false,
+          "pluginVersion": "7.4.3",
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
@@ -1618,6 +1734,7 @@
     },
     {
       "collapsed": true,
+      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1654,12 +1771,14 @@
           "styles": [
             {
               "alias": "Time",
+              "align": "auto",
               "dateFormat": "YYYY-MM-DD HH:mm:ss",
               "pattern": "Time",
               "type": "date"
             },
             {
               "alias": "Protocol version",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
@@ -1679,6 +1798,7 @@
             },
             {
               "alias": "Host (version)",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
@@ -1695,6 +1815,7 @@
             },
             {
               "alias": "",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
@@ -1721,7 +1842,7 @@
           ],
           "title": "Host version and supported protocol version",
           "transform": "timeseries_aggregations",
-          "type": "table"
+          "type": "table-old"
         },
         {
           "columns": [
@@ -1751,12 +1872,14 @@
           "styles": [
             {
               "alias": "Time",
+              "align": "auto",
               "dateFormat": "YYYY-MM-DD HH:mm:ss",
               "pattern": "Time",
               "type": "date"
             },
             {
               "alias": "Ledger age",
+              "align": "auto",
               "colorMode": "cell",
               "colors": [
                 "rgba(50, 172, 45, 0.97)",
@@ -1776,6 +1899,7 @@
             },
             {
               "alias": "Host (version)",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
@@ -1792,6 +1916,7 @@
             },
             {
               "alias": "",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
@@ -1818,7 +1943,7 @@
           ],
           "title": "Ledger age",
           "transform": "timeseries_aggregations",
-          "type": "table"
+          "type": "table-old"
         }
       ],
       "title": "Version info",
@@ -1826,6 +1951,7 @@
     },
     {
       "collapsed": true,
+      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -2031,6 +2157,7 @@
     },
     {
       "collapsed": true,
+      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3323,6 +3450,7 @@
     },
     {
       "collapsed": true,
+      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -3359,6 +3487,7 @@
           "styles": [
             {
               "alias": "Detected by # of monitored instances",
+              "align": "auto",
               "colorMode": "row",
               "colors": [
                 "rgba(50, 172, 45, 0.97)",
@@ -3376,6 +3505,7 @@
             },
             {
               "alias": "Critical Peers",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(245, 54, 54, 0.9)",
@@ -3405,7 +3535,7 @@
           "timeShift": null,
           "title": "Quorum Transitive Critical Peers",
           "transform": "timeseries_aggregations",
-          "type": "table"
+          "type": "table-old"
         },
         {
           "columns": [
@@ -3435,6 +3565,7 @@
           "styles": [
             {
               "alias": "Instance (critical validators)",
+              "align": "auto",
               "colorMode": null,
               "colors": [
                 "rgba(50, 172, 45, 0.97)",
@@ -3454,6 +3585,7 @@
             },
             {
               "alias": "Critical",
+              "align": "auto",
               "colorMode": "row",
               "colors": [
                 "rgba(50, 172, 45, 0.97)",
@@ -3496,7 +3628,7 @@
           "timeShift": null,
           "title": "Quorum Transitive Critical Peers Details",
           "transform": "timeseries_aggregations",
-          "type": "table"
+          "type": "table-old"
         },
         {
           "aliasColors": {},
@@ -4152,6 +4284,7 @@
     },
     {
       "collapsed": true,
+      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -4165,14 +4298,23 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
           "description": "Consensus Timing Externalized",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 0,
+          "fillGradient": 0,
           "gridPos": {
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 16
+            "y": 7
           },
+          "hiddenSeries": false,
           "id": 223,
           "legend": {
             "alignAsTable": true,
@@ -4188,8 +4330,11 @@
           "linewidth": 1,
           "links": [],
           "nullPointMode": "null",
-          "options": {},
+          "options": {
+            "alertThreshold": true
+          },
           "percentage": false,
+          "pluginVersion": "7.4.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -4266,14 +4411,23 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
           "description": "Consensus Timing Nominated",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 0,
+          "fillGradient": 0,
           "gridPos": {
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 16
+            "y": 7
           },
+          "hiddenSeries": false,
           "id": 224,
           "legend": {
             "alignAsTable": true,
@@ -4289,8 +4443,11 @@
           "linewidth": 1,
           "links": [],
           "nullPointMode": "null",
-          "options": {},
+          "options": {
+            "alertThreshold": true
+          },
           "percentage": false,
+          "pluginVersion": "7.4.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -4365,14 +4522,23 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
           "description": "Consensus Timeout Nominate",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 0,
+          "fillGradient": 0,
           "gridPos": {
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 24
+            "y": 15
           },
+          "hiddenSeries": false,
           "id": 798,
           "legend": {
             "alignAsTable": true,
@@ -4388,8 +4554,11 @@
           "linewidth": 1,
           "links": [],
           "nullPointMode": "null",
-          "options": {},
+          "options": {
+            "alertThreshold": true
+          },
           "percentage": false,
+          "pluginVersion": "7.4.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -4464,14 +4633,23 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
           "description": "Consensus Timeout Prepare",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 0,
+          "fillGradient": 0,
           "gridPos": {
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 24
+            "y": 15
           },
+          "hiddenSeries": false,
           "id": 799,
           "legend": {
             "alignAsTable": true,
@@ -4487,8 +4665,11 @@
           "linewidth": 1,
           "links": [],
           "nullPointMode": "null",
-          "options": {},
+          "options": {
+            "alertThreshold": true
+          },
           "percentage": false,
+          "pluginVersion": "7.4.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -4563,14 +4744,23 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
           "description": "Consensus Envelopes",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 0,
+          "fillGradient": 0,
           "gridPos": {
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 32
+            "y": 23
           },
+          "hiddenSeries": false,
           "id": 241,
           "legend": {
             "alignAsTable": true,
@@ -4587,8 +4777,11 @@
           "linewidth": 1,
           "links": [],
           "nullPointMode": "null",
-          "options": {},
+          "options": {
+            "alertThreshold": true
+          },
           "percentage": false,
+          "pluginVersion": "7.4.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -4679,14 +4872,23 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
           "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 0,
+          "fillGradient": 0,
           "gridPos": {
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 40
+            "y": 31
           },
+          "hiddenSeries": false,
           "id": 1985,
           "legend": {
             "alignAsTable": true,
@@ -4703,8 +4905,11 @@
           "linewidth": 1,
           "links": [],
           "nullPointMode": "null",
-          "options": {},
+          "options": {
+            "alertThreshold": true
+          },
           "percentage": false,
+          "pluginVersion": "7.4.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -4780,14 +4985,23 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
           "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 0,
+          "fillGradient": 0,
           "gridPos": {
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 48
+            "y": 39
           },
+          "hiddenSeries": false,
           "id": 1988,
           "legend": {
             "alignAsTable": true,
@@ -4804,8 +5018,11 @@
           "linewidth": 1,
           "links": [],
           "nullPointMode": "null",
-          "options": {},
+          "options": {
+            "alertThreshold": true
+          },
           "percentage": false,
+          "pluginVersion": "7.4.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -4880,14 +5097,253 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
           "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 0,
+          "fillGradient": 0,
           "gridPos": {
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 56
+            "y": 47
           },
+          "hiddenSeries": false,
+          "id": 2569,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.3",
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Average",
+              "color": "rgb(0, 0, 0)"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(\n  rate(stellar_core_scp_timing_first_to_self_externalize_lag_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[1m]) /\n  rate(stellar_core_scp_timing_first_to_self_externalize_lag_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[1m])\n)",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "Average",
+              "refId": "A"
+            },
+            {
+              "expr": "stellar_core_scp_timing_first_to_self_externalize_lag_seconds{quantile=\"0.99\",environment=~\"$environment\",instance=~\"$instance\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{instance}} P99",
+              "refId": "B"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Timing First to Self Externalize Lag",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 0,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 55
+          },
+          "hiddenSeries": false,
+          "id": 2570,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "nullPointMode": "null",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "7.4.3",
+          "pointradius": 5,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "Average",
+              "color": "rgb(0, 0, 0)"
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "expr": "avg(\n  rate(stellar_core_scp_timing_self_to_others_externalize_lag_seconds_sum{environment=~\"$environment\",instance=~\"$instance\"}[1m]) /\n  rate(stellar_core_scp_timing_self_to_others_externalize_lag_seconds_count{environment=~\"$environment\",instance=~\"$instance\"}[1m])\n)",
+              "format": "time_series",
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "Average",
+              "refId": "A"
+            },
+            {
+              "expr": "stellar_core_scp_timing_self_to_others_externalize_lag_seconds{quantile=\"0.99\",environment=~\"$environment\",instance=~\"$instance\"}",
+              "format": "time_series",
+              "hide": false,
+              "interval": "",
+              "intervalFactor": 1,
+              "legendFormat": "{{instance}} P99",
+              "refId": "B"
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Timing Self to Others Externalize Lag",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "s",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
+          "fill": 0,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 63
+          },
+          "hiddenSeries": false,
           "id": 2521,
           "legend": {
             "alignAsTable": true,
@@ -4904,8 +5360,11 @@
           "linewidth": 1,
           "links": [],
           "nullPointMode": "null",
-          "options": {},
+          "options": {
+            "alertThreshold": true
+          },
           "percentage": false,
+          "pluginVersion": "7.4.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -4980,14 +5439,23 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
           "description": "Consensus Info",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 0,
+          "fillGradient": 0,
           "gridPos": {
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 64
+            "y": 71
           },
+          "hiddenSeries": false,
           "id": 393,
           "legend": {
             "alignAsTable": true,
@@ -5004,8 +5472,11 @@
           "linewidth": 1,
           "links": [],
           "nullPointMode": "null",
-          "options": {},
+          "options": {
+            "alertThreshold": true
+          },
           "percentage": false,
+          "pluginVersion": "7.4.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -5092,14 +5563,23 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
           "description": "Consensus Pending",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 0,
+          "fillGradient": 0,
           "gridPos": {
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 72
+            "y": 79
           },
+          "hiddenSeries": false,
           "id": 392,
           "legend": {
             "alignAsTable": true,
@@ -5116,8 +5596,11 @@
           "linewidth": 1,
           "links": [],
           "nullPointMode": "null",
-          "options": {},
+          "options": {
+            "alertThreshold": true
+          },
           "percentage": false,
+          "pluginVersion": "7.4.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -5201,14 +5684,23 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
+          "datasource": "${DS_PROMETHEUS}",
           "description": "SCP Memory Cumulative Statements",
+          "fieldConfig": {
+            "defaults": {
+              "custom": {}
+            },
+            "overrides": []
+          },
           "fill": 0,
+          "fillGradient": 0,
           "gridPos": {
             "h": 8,
             "w": 24,
             "x": 0,
-            "y": 80
+            "y": 87
           },
+          "hiddenSeries": false,
           "id": 394,
           "legend": {
             "alignAsTable": true,
@@ -5225,8 +5717,11 @@
           "linewidth": 1,
           "links": [],
           "nullPointMode": "null",
-          "options": {},
+          "options": {
+            "alertThreshold": true
+          },
           "percentage": false,
+          "pluginVersion": "7.4.3",
           "pointradius": 5,
           "points": false,
           "renderer": "flot",
@@ -5302,6 +5797,7 @@
     },
     {
       "collapsed": true,
+      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -5410,6 +5906,7 @@
     },
     {
       "collapsed": true,
+      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -5614,6 +6111,7 @@
     },
     {
       "collapsed": true,
+      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -6028,6 +6526,7 @@
     },
     {
       "collapsed": true,
+      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -6351,6 +6850,7 @@
     },
     {
       "collapsed": true,
+      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -7705,6 +8205,7 @@
     },
     {
       "collapsed": true,
+      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -8095,6 +8596,7 @@
     },
     {
       "collapsed": true,
+      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -13631,6 +14133,7 @@
     },
     {
       "collapsed": true,
+      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -16072,6 +16575,7 @@
     },
     {
       "collapsed": true,
+      "datasource": "${DS_PROMETHEUS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -18796,7 +19300,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 18,
+  "schemaVersion": 27,
   "style": "dark",
   "tags": [
     "stellar-core"
@@ -18808,13 +19312,18 @@
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(stellar_core_started_on, environment)",
+        "description": null,
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": false,
         "name": "environment",
         "options": [],
-        "query": "label_values(stellar_core_started_on, environment)",
+        "query": {
+          "query": "label_values(stellar_core_started_on, environment)",
+          "refId": "Prometheus-environment-Variable-Query"
+        },
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
@@ -18830,13 +19339,18 @@
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(stellar_core_started_on{environment=~\"$environment\"}, instance)",
+        "description": null,
+        "error": null,
         "hide": 0,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "instance",
         "options": [],
-        "query": "label_values(stellar_core_started_on{environment=~\"$environment\"}, instance)",
+        "query": {
+          "query": "label_values(stellar_core_started_on{environment=~\"$environment\"}, instance)",
+          "refId": "Prometheus-instance-Variable-Query"
+        },
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
@@ -18852,13 +19366,18 @@
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "definition": "{__name__=~\"stellar_core_database_.*_seconds\"}",
+        "description": null,
+        "error": null,
         "hide": 2,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "db_metric",
         "options": [],
-        "query": "{__name__=~\"stellar_core_database_.*_seconds\"}",
+        "query": {
+          "query": "{__name__=~\"stellar_core_database_.*_seconds\"}",
+          "refId": "Prometheus-db_metric-Variable-Query"
+        },
         "refresh": 1,
         "regex": "/stellar_core_database_(.*)_seconds/",
         "skipUrlSync": false,
@@ -18874,13 +19393,18 @@
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "definition": "{__name__=~\"stellar_core_overlay_.*_seconds\"}",
+        "description": null,
+        "error": null,
         "hide": 2,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "overlay_metric",
         "options": [],
-        "query": "{__name__=~\"stellar_core_overlay_.*_seconds\"}",
+        "query": {
+          "query": "{__name__=~\"stellar_core_overlay_.*_seconds\"}",
+          "refId": "Prometheus-overlay_metric-Variable-Query"
+        },
         "refresh": 1,
         "regex": "/stellar_core_overlay_(.*)_seconds/",
         "skipUrlSync": false,
@@ -18896,13 +19420,18 @@
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "definition": "{__name__=~\"stellar_core_history_archive_.*_success\",instance=~\"$instance\"}",
+        "description": null,
+        "error": null,
         "hide": 2,
         "includeAll": true,
         "label": null,
         "multi": true,
         "name": "archive_metric",
         "options": [],
-        "query": "{__name__=~\"stellar_core_history_archive_.*_success\",instance=~\"$instance\"}",
+        "query": {
+          "query": "{__name__=~\"stellar_core_history_archive_.*_success\",instance=~\"$instance\"}",
+          "refId": "Prometheus-archive_metric-Variable-Query"
+        },
         "refresh": 1,
         "regex": "/stellar_core_history_archive_(.*)_success/",
         "skipUrlSync": false,
@@ -18918,13 +19447,18 @@
         "current": {},
         "datasource": "${DS_PROMETHEUS}",
         "definition": "label_values(stellar_core_ledger_age_closed_bucket,le)",
+        "description": null,
+        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "SLI bucket",
         "multi": false,
         "name": "le",
         "options": [],
-        "query": "label_values(stellar_core_ledger_age_closed_bucket,le)",
+        "query": {
+          "query": "label_values(stellar_core_ledger_age_closed_bucket,le)",
+          "refId": "Prometheus-le-Variable-Query"
+        },
         "refresh": 2,
         "regex": "/[.0-9]+/",
         "skipUrlSync": false,
@@ -18969,5 +19503,5 @@
   "timezone": "",
   "title": "Stellar Core Full",
   "uid": "DCQsHZ7Wk",
-  "version": 76
+  "version": 79
 }
