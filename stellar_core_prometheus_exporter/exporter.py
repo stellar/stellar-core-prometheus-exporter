@@ -254,10 +254,15 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
             return
 
         for metric in self.quorum_metrics:
-            self.registry.Gauge('stellar_core_quorum_{}'.format(metric),
-                                'Stellar core quorum metric: {}'.format(metric),
-                                tmp[metric]
-                                )
+            try:
+
+                self.registry.Gauge('stellar_core_quorum_{}'.format(metric),
+                                    'Stellar core quorum metric: {}'.format(metric),
+                                    tmp[metric]
+                                    )
+            except KeyError as e:
+                self.log_message('Unable to find metric in quorum qset: {}. This is probably fine and will fix itself as stellar-core joins the quorum.'.format(metric))
+
         for metric in self.quorum_phase_metrics:
             if tmp['phase'].lower() == metric:
                 value = 1
