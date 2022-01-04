@@ -178,6 +178,14 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
                                     labels=tuple(zip(self.label_names+['quantile'], self.labels+[0.99])),
                                     value=lib.duration_to_seconds(metrics[k]['99%'], metrics[k]['duration_unit']),
                                     )
+                # Newer versions of core report a '100%' quantile which is the max
+                # sample over the recent sampling period (not all-time).
+                if '100%' in metrics[k]:
+                    self.registry.Gauge(metric_name, 'libmedida metric type: ' + metrics[k]['type'],
+                                        labels=tuple(zip(self.label_names+['quantile'], self.labels+[1.0])),
+                                        value=lib.duration_to_seconds(metrics[k]['100%'], metrics[k]['duration_unit']),
+                                        )
+
             elif metrics[k]['type'] == 'histogram':
                 if 'count' not in metrics[k]:
                     # Stellar-core version too old, we don't have required data
@@ -196,6 +204,14 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
                                     labels=tuple(zip(self.label_names+['quantile'], self.labels+[0.99])),
                                     value=metrics[k]['99%'],
                                     )
+                # Newer versions of core report a '100%' quantile which is the max
+                # sample over the recent sampling period (not all-time).
+                if '100%' in metrics[k]:
+                    self.registry.Gauge(metric_name, 'libmedida metric type: ' + metrics[k]['type'],
+                                        labels=tuple(zip(self.label_names+['quantile'], self.labels+[1.0])),
+                                        value=metrics[k]['100%'],
+                                        )
+
             elif metrics[k]['type'] == 'counter':
                 # we have a counter, this is a Prometheus Gauge
                 self.registry.Gauge(metric_name, 'libmedida metric type: ' + metrics[k]['type'],
