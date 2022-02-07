@@ -277,17 +277,22 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
                                     tmp[metric]
                                     )
             except KeyError as e:
-                self.log_message('Unable to find metric in quorum qset: {}. This is probably fine and will fix itself as stellar-core joins the quorum.'.format(metric))
+                self.log_message('Unable to find metric in quorum qset: {}. This is probably fine and will fix itself as stellar-core joins the quorum, or core is running cli catchup'.format(metric))
 
-        for metric in self.quorum_phase_metrics:
-            if tmp['phase'].lower() == metric:
-                value = 1
-            else:
-                value = 0
-            self.registry.Gauge('stellar_core_quorum_phase_{}'.format(metric),
-                                'Stellar core quorum phase {}'.format(metric),
-                                value=value,
-                                )
+        try:
+
+            for metric in self.quorum_phase_metrics:
+                if tmp['phase'].lower() == metric:
+                    value = 1
+                else:
+                    value = 0
+                self.registry.Gauge('stellar_core_quorum_phase_{}'.format(metric),
+                                    'Stellar core quorum phase {}'.format(metric),
+                                    value=value,
+                                    )
+        except KeyError as e:
+                self.log_message('Unable to find phase in quorum qset. This is probably fine and will fix itself as stellar-core joins the quorum, or core is running cli catchup')
+
         # Versions >=11.2.0 expose more info about quorum
         if 'transitive' in info['quorum']:
             if info['quorum']['transitive']['intersection']:
