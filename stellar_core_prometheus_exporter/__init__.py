@@ -1,3 +1,6 @@
 def run():
     from . import exporter
-    exporter.main()
+    try:
+        exporter.main()
+    except KeyboardInterrupt:
+        print("Interrupted")
