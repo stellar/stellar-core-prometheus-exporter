@@ -52,8 +52,8 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
         except Exception:
             return ['unknown', 'unknown', 'unknown', 'unknown', 'unknown']
         match = self.build_regex.match(build)
-        build = re.sub('\s', '_', build).lower()
-        build = re.sub('\(|\)', '', build)
+        build = re.sub(r'\s', '_', build).lower()
+        build = re.sub(r'\(|\)', '', build)
 
         if not match:
             return ['unknown', 'unknown', 'unknown', build, network]
@@ -118,7 +118,7 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
         #   "stellar-core 11.1.0-unstablerc2 (324c1bd61b0e9bada63e0d696d799421b00a7950)"
         #   "stellar-core 11.1.0 (324c1bd61b0e9bada63e0d696d799421b00a7950)"
         #   "v11.1.0"
-        self.build_regex = re.compile('(stellar-core|v) ?(\d+)\.(\d+)\.(\d+).*$')
+        self.build_regex = re.compile(r'(stellar-core|v) ?(\d+)\.(\d+)\.(\d+).*$')
 
         self.label_names = ["ver_major", "ver_minor", "ver_patch", "build", "network"]
         self.labels = self.get_labels()
@@ -151,7 +151,7 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
             return
         # iterate over all metrics
         for k in metrics:
-            metric_name = re.sub('\.|-|\s', '_', k).lower()
+            metric_name = re.sub(r'\.|-|\s', '_', k).lower()
             metric_name = 'stellar_core_' + metric_name
 
             if metrics[k]['type'] == 'timer':
@@ -343,7 +343,7 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
                             value=info['protocol_version'],
                             )
         for metric in self.state_metrics:
-            name = re.sub('\s', '_', metric)
+            name = re.sub(r'\s', '_', metric)
             if info['state'].lower().startswith(metric):  # Use startswith to work around "!"
                 value = 1
             else:
