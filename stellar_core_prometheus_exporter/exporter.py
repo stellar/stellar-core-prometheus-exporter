@@ -26,6 +26,10 @@ parser.add_argument('--stellar-core-address', type=str,
                     help='Stellar core address. Defaults to STELLAR_CORE_ADDRESS environment '
                          'variable or if not set to http://127.0.0.1:11626',
                     default=environ.get('STELLAR_CORE_ADDRESS', 'http://127.0.0.1:11626'))
+parser.add_argument('--host', type=str,
+                    help='HTTP bind address. Defaults to HOST environment variable '
+                         'or if not set to 0.0.0.0',
+                    default=environ.get('HOST', '0.0.0.0'))
 parser.add_argument('--port', type=int,
                     help='HTTP bind port. Defaults to PORT environment variable '
                          'or if not set to 9473',
@@ -402,7 +406,7 @@ class StellarCoreHandler(BaseHTTPRequestHandler):
 
 
 def main():
-    httpd = _ThreadingSimpleServer(("", args.port), StellarCoreHandler)
+    httpd = _ThreadingSimpleServer((args.host, args.port), StellarCoreHandler)
     t = threading.Thread(target=httpd.serve_forever)
     t.daemon = True
     t.start()
