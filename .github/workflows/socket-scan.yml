@@ -33,12 +33,6 @@ on:
 permissions:
   contents: read
 
-env:
-  # Force JS-based GitHub actions (actions/checkout, actions/setup-*, etc.) to
-  # use Node 24 instead of the soon-to-be-deprecated Node 20. Safe to remove
-  # after 2026-06-16 (when Node 24 becomes the default and this becomes a no-op).
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   socket-scan:
     runs-on: ubuntu-latest
@@ -50,9 +44,7 @@ jobs:
       - uses: astral-sh/setup-uv@fac544c07dec837d0ccb6301d7b5580bf5edae39 # v8.2.0
       - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
-          node-version: "24.18.0"
-      - name: Enable Corepack (yarn/pnpm per repo packageManager)
-        run: corepack enable
+          node-version: "24"
 
       - name: Install Socket CLI
         run: npm install -g socket
