@@ -1,0 +1,11 @@
+{
+  "workspace": ".",
+  "python_sast_enabled": true,
+  "sast_ignore_overrides": "python-eval-usage:stellar_core_prometheus_exporter/lib.py,python-dangerous-eval-exec:stellar_core_prometheus_exporter/lib.py",
+  "secret_scanning_enabled": true,
+  "console_tabular_enabled": true,
+  "dockerfiles": "Dockerfile",
+  "socket_tier_1_enabled": false,
+  "trivy_vuln_enabled": false,
+  "trufflehog_exclude_dir": ".venv,venv,__pycache__,.git"
+}
