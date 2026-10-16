@@ -9,6 +9,7 @@ Optional config can be provided using CLI arguments or environment variables.
 
 Supported configuration options:
 * **--stellar-core-address** - address of monitored stellar-core. Defaults to `http://127.0.0.1:11626`. Can also be set using `STELLAR_CORE_ADDRESS` environment variable
+* **--host** - listening address. Defaults to `0.0.0.0`. Can also be set using `HOST` environment variable
 * **--port** - listening port. Defaults to `9473`. Can also be set using `PORT` environment variable
 
 # Grafana dashboard
